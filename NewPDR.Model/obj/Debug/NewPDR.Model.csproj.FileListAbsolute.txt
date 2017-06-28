@@ -11,4 +11,3 @@ C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.dll
 C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.pdb
-C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.csprojResolveAssemblyReference.cache
