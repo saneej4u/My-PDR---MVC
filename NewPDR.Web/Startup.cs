@@ -9,7 +9,8 @@ namespace NewPDR.Web
     {
         public void Configuration(IAppBuilder app)
         {
-         System.Data.Entity.Database.SetInitializer(new SampleData());
+        
+           // Database.SetInitializer<YourContextType>(new CreateDatabaseIfNotExists());
             ConfigureAuth(app);
 
             app.MapSignalR();

@@ -87,6 +87,8 @@ namespace NewPDR.Model
 
         public string LineManagerEmailId { get; set; }
 
+        public string Analysis1 { get; set; }
+
         public PDReview()
         {
             DateTimeCreated = DateTime.Now;

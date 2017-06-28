@@ -15,6 +15,9 @@ namespace NewPDR.Web
     {
         protected void Application_Start()
         {
+           // Database.SetInitializer<NewPDRDataContext>(new SampleData());
+           //var _dataCntx = new NewPDRDataContext();
+           // _dataCntx.Database.Initialize(true);
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

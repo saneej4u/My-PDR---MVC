@@ -10,7 +10,7 @@ namespace NewPDR.Data
 {
 
 
-    public class SampleData : DropCreateDatabaseIfModelChanges<NewPDRDataContext>
+    public class SampleData : DropCreateDatabaseAlways<NewPDRDataContext>
     {
         protected override void Seed(NewPDRDataContext context)
         {
