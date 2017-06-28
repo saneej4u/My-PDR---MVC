@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row text-center" style="margin:50px;">
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-8 col-md-8">
+            <h1>{{productTypeHeader}} </h1>
+        </div>
+        <div class="col-sm-2 col-md-2"></div>
+    </div>
+
+    <my-spinner *ngIf="isRequesting" [isRunning]="isRequesting"></my-spinner>
+    <div *ngIf="!isRequesting" class="card-container">
+        <div *ngFor="let product of products">
+            <my-product [product]="product"></my-product>
+        </div>
+    </div>
+</div>

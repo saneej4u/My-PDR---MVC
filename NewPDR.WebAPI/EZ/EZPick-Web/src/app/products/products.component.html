@@ -1,0 +1,19 @@
+<md-card *ngIf="product" style="font-size: 20px; color:#536468; min-height:270px;">
+  <div (click)="productClicked(product)" style="cursor: pointer; cursor: hand;">
+    <img md-card-image [alt]="product.name" src="app/products/images/{{product?.productImages[0]?.imageUrl}}">
+    <md-card-title>{{product.name}}</md-card-title>
+    <md-card-content class="secondary">
+     <h1>{{product.unitPrice | currency :'GBP' :true}}</h1>
+    </md-card-content>
+  </div>
+
+
+  <md-card-actions align="end" style="padding-bottom:20px;">
+    <div class="row">
+      <div class="col-sm-6 col-md-6"><button (click)="addToCart(product)" class="btn btn-primary" color=""><i class="fa fa-cart-plus fa-lg" aria-hidden="true" style="padding-right:10px;"></i> ADD TO CART</button></div>
+      <div class="col-sm-6 col-md-6"> <button (click)="openQuickViewdialog()" class="btn btn-default">QUICK VIEW <i class="fa fa-search-minus fa-lg" aria-hidden="true" style="padding-left:10px;"></i></button></div>
+    </div>
+
+
+  </md-card-actions>
+</md-card>

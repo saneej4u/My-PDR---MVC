@@ -1,0 +1,211 @@
+<div class="container">
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="#VerifyEmail-step" type="button" class="btn btn-primary btn-circle" disabled="disabled">
+                    <span> <i class="fa fa-truck" aria-hidden="true"></i></span>
+                </a>
+                <p>Shipping</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#ProfileSetup-step" type="button" class="btn btn-default btn-circle" disabled="disabled" id="ProfileSetup-step-2">
+                    <span><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                </a>
+                <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#Security-Setup-step" type="button" class="btn btn-default btn-success-2 btn-circle" disabled="disabled" id="Security-Setup-step-3">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+                <p>Confirmation</p>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="reviewPayForm" novalidate>
+        <div class="row" style="padding:30px;">
+            <div class="col-sm-12 col-md-12 text-center">
+                <h2> <b>Shipping Details</b> </h2>
+                <p class="lead">
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                    ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+                    dui, If you want you can <button class="btn" style="font-weight:bold" (click)="addNewDelLink()"> Add new delivery address</button>
+                </p>
+                <div *ngIf="delErrors">
+                    <h2><span style="color:red;">{{delErrors}}</span> </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf='delCount  > 0'>
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Select a delivery address</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3" *ngFor="let d of deliveryAddress" style="padding:15px">
+                                <p> {{d.addressLine1}}</p>
+                                <p> {{d.addressLine2}}</p>
+                                <p> {{d.street}}</p>
+                                <p> {{d.postCode}}</p>
+                                <p> {{d.country}}</p>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <button #changeDeliveryAddress class="btn btn-sm btn-block btn-primary" (click)="deliverToThisaddress(d)">DELIVER TO THIS ADDRESS</button>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:10px">
+                                    <div class="col-sm-6 col-md-6">
+                                        <button class="btn btn-sm btn-default">EDIT</button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <button class="btn btn-sm btn-default pull-right">REMOVE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center" *ngIf="delErrors">
+                    <div>
+                        <h2><span style="color:red;">{{delErrors}}</span> </h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h2>Add a new address</h2>
+                <h5>All the items will be delivered with in 3-5 working days</h5>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row" id="addnewdeladd">
+            <div class="col-sm-4 col-md-4">
+                <form role="form" [formGroup]="deliveryAddressForm" novalidate (ngSubmit)="onSubmitAddDelivery(deliveryAddressForm.value)">
+                    <div class="form-group">
+                        <label>Address Line 1</label>
+                        <input #addNewLink class="form-control" formControlName="addressLine1" placeholder="Enter Your Address Line 1">
+                        <small [hidden]="deliveryAddressForm.controls.addressLine1.valid || deliveryAddressForm.controls.addressLine1.pristine">
+						This field is required.
+					</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Address Line 2</label>
+                        <input class="form-control" formControlName="addressLine2" placeholder="Enter Your Address Line 2">
+                        <small [hidden]="deliveryAddressForm.controls.addressLine2.valid || deliveryAddressForm.controls.addressLine2.pristine">
+						This field is required.
+					</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Street</label>
+                        <input class="form-control" formControlName="street" placeholder="Enter Your Street">
+                        <small [hidden]="deliveryAddressForm.controls.street.valid || deliveryAddressForm.controls.street.pristine">
+						This field is required.
+					</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <label> Post Code</label>
+                                <input class="form-control" formControlName="postcode" placeholder="Post code">
+                                <small [hidden]="deliveryAddressForm.controls.postcode.valid || deliveryAddressForm.controls.postcode.pristine">
+                                This field is required.
+                            </small>
+                            </div>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input class="form-control" formControlName="country" placeholder="Enter your Country">
+                                <small [hidden]="deliveryAddressForm.controls.country.valid || deliveryAddressForm.controls.country.pristine">
+                                This field is required.
+                            </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="errors">
+                        <p> <span class="label label-danger">{{errors}}</span> </p>
+                    </div>
+                    <button [disabled]="!deliveryAddressForm.valid" class="btn btn-block btn-md btn-primary">Deliver to this address</button>
+                </form>
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <h4>Review below items before proceed to payment section.</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-left"> <span><b>PRODUCT</b></span></th>
+                            <th class="text-left"> <span><b>ITEM</b></span></th>
+                            <th class="text-right"> <span><b>QUANTITY</b></span></th>
+                            <th class="text-right"> <span><b>SUBTOTAL</b></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let items of addedItems">
+                            <td style="width:65px; height:65px">
+                                <div class="thumbnail">
+                                    <img style="width:60px; height:60px" src="app/products/images/{{items?.imageUrl}}">
+                                </div>
+                            </td>
+                            <td>
+                                <h5> <b>{{items?.name}}</b>
+                                </h5>
+                                <h4> <b>{{items?.price | currency : 'GBP' : true}}</b> </h4>
+                            </td>
+                            <td class="text-right"> {{items?.quantity}}</td>
+                            <td class="text-right">
+                                <h4> <b>{{items?.price * items?.quantity | currency : 'GBP' : true}}</b> </h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row" *ngIf="selectedDelivery">
+                    <div class="col-sm-12 col-md-12 text-left">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">DELIVERY ADDRESS</div>
+                            <div class="panel-body">
+                                <p>
+                                    Your order will be delivered to
+                                    <b style="text-decoration:underline;">
+                                    {{selectedDelivery.addressLine1}}, 
+                                    {{selectedDelivery.addressLine2}},
+                                    {{selectedDelivery.street}}, 
+                                    {{selectedDelivery.postCode}}, 
+                                    {{selectedDelivery.country}}
+                                    </b> in 3 -5 working days.
+                                </p>
+                                <p>If you are happy with delivery address please Continue by clicking Pay & Review, or</p>
+                                <p><button class="btn" (click)="changeDel()">Click here if you want to change delivery address</button>                                    </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-md-5 text-left">
+                        <!-- <button class="btn btn-lg btn-block btn-primary"> <i class="fa fa-shopping-basket fa-lg" style="padding-right:10px;" aria-hidden="true"></i> CONTINUE SHOPPING  </button> -->
+                    </div>
+                    <div class="col-sm-3 col-md-3 text-left">
+
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <button #reviewandpaydiv class="btn btn-lg btn-block btn-primary" (click)="onClickreviewandpay(selectedDelivery)"> REVIEW & PAY <i class="fa fa-credit-card fa-lg" style="padding-left:10px;" aria-hidden="true"></i> </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+
+    </form>
+</div>

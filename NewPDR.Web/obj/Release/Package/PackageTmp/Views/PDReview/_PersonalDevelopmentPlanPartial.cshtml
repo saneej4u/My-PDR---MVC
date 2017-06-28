@@ -1,0 +1,117 @@
+﻿@model List<NewPDR.Web.ViewModel.PDPViewModel>
+
+
+@for (int i = 0; i < Model.Count(); i++)
+{
+    using (Ajax.BeginForm("SavePersonalDevelopmentPlan", "PDReview", new AjaxOptions { InsertionMode = InsertionMode.Replace, OnSuccess = "PDPSaveSuccess", OnFailure = "PDPSaveFailed", LoadingElementId = "", UpdateTargetId = "PDPForm" + i }, new { id = "PDPForm" + i, data_assigned_id = i }))
+    {
+        var collapsePanelIndex = "cp" + Model[i].PDPIndexIndex;
+        @Html.HiddenFor(m => Model[i].PDPIndexIndex, new { @class = "PDPIndexHidden" })
+        @Html.HiddenFor(m => Model[i].ID)
+        <input type="hidden" value="@i" />
+        <div id="objPanel" class="panel-group" style="margin :15px 0 15px 0">
+            <div class="panel panel-default">
+                <div id=@collapsePanelIndex data-collapsed-index="@collapsePanelIndex" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div style="padding:20px; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important;">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    @Html.LabelFor(m => Model[i].SelectedDevelopmentCategory)
+
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    @Html.LabelFor(m => Model[i].TimeScale)
+                                </div>
+                                <div class="col-lg-6 col-md-3 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].DevelopmentNeed)
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 well" style="min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.DropDownListFor(m => Model[i].SelectedDevelopmentCategory, Model[i].DevelopmentCategorys, "- Please select -", new { @class = "form-control controls" })
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(m => Model[i].SelectedDevelopmentCategory, Model[i].DevelopmentCategorys, "- Please select -", new { @class = "form-control controls" , disabled="true" })
+                                    }
+
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 well" style="min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextBoxFor(m => Model[i].TimeScale, new { placeholder = "Timescale", @class = "form-control controls" })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].TimeScale, new { placeholder = "Timescale", @class = "form-control controls" })
+                                    }
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].DevelopmentNeed, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].DevelopmentNeed, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].Solution, new { @class = "pull-left" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].CostAndResource, new { @class = "pull-left" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="min-height:100px;">
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].Solution, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter solution..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].Solution, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter solution..." })
+                                    }
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="color: grey;font-weight: 300; min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].CostAndResource, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px; ", placeholder = "Enter cost & resources..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].CostAndResource, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px; ", placeholder = "Enter cost & resources..." })
+                                    }
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (!Model[i].IsDisableWholeView)
+                {
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <input type="hidden" name="Index" value="@i" />
+                                <button type="submit" id="@Model[i].PDPIndexIndex" class="btn btn-lg btn-primary pull-right btn-block"><h4><i class="fa fa-database"></i> Save</h4></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+}

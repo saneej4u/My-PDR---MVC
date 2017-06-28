@@ -1,0 +1,343 @@
+﻿@model NewPDR.Web.ViewModel.PDRDetailsViewModel
+@{
+    ViewBag.Title = "Details for year " + @Model.ReviewPeriod.Year;
+
+}
+
+
+<script type="text/javascript">
+
+    function ObjectiveSaveSuccess(data, status) {
+        var index = $(data).find("button").attr("id");
+        var collapsePanelIndex = "#cp" + index;
+        if (status == 'success') {
+            $(collapsePanelIndex).addClass("in");
+            if ($(data).find('.input-validation-error').length > 0) {
+                toastr.error('Objectives failed to save.')
+            }
+            else {
+                toastr.success('Objectives successfully saved.')
+            }
+        }
+    }
+
+    function ObjectiveSaveCompleted(xhr, status) {
+
+
+    }
+
+    function ObjectiveSaveFailed(xhr, status, error) {
+        alert(status);
+    }
+
+
+    function SuccessFactorSaveSuccess(data, status) {
+        var index = $(data).find("button").attr("id");
+        var collapsePanelIndex = "#cpSuccessFactor" + index;
+        if (status == 'success') {
+            $(collapsePanelIndex).addClass("in");
+            toastr.success('Success Factor successfully saved.')
+        }
+    }
+
+    function PDPSaveSuccess(data, status) {
+        var index = $(data).find("button").attr("id");
+        var collapsePanelIndex = "#cpSuccessFactor" + index;
+        if (status == 'success') {
+            $(collapsePanelIndex).addClass("in");
+            toastr.success('Personal Development Plan successfully saved.')
+        }
+    }
+
+
+
+    function SignOffSaveSuccess(data, status) {
+        if (status == 'success') {
+            toastr.success('Sign off & Summary Comments successfully saved.')
+        }
+        $('#toggle-colleuage').bootstrapToggle({
+            on: 'Colleauge Sign',
+            off: 'Clear Sign'
+        });
+
+        $('#toggle-manager').bootstrapToggle({
+            on: 'Manager Sign',
+            off: 'Clear Sign'
+        });
+    }
+
+    function objoverallSuccess(data, status) {
+        alert(data);
+    }
+
+    function requestSentSuccess(data, status) {
+        if (status == 'success') {
+            toastr.success('Un-Lock request sent.')
+        }
+    }
+
+
+
+    var dt = '@ViewBag.Lock_EndTime';
+
+    var isLockedByMe = '@ViewBag.Is_Locked_Me';
+
+    console.log("Is Locked by Me: ", isLockedByMe);
+    console.log("1: Lock_EndTime: " + dt);
+
+    var dateAr = dt.split('-');
+    var newDate = dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2];
+
+    var end = new Date(dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2]);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        //var now = new Date();
+        //var d = new Date();
+        //var now = d.toUTCString();
+
+        var dtest = new Date();
+        var now = new Date();
+
+        now.setHours(dtest.getHours() - 1);
+        console.log("2: Now Date: " + now);
+
+        var distance = end - now;
+
+        console.log("3: Distance: " + distance);
+
+        if (distance < 0) {
+            clearInterval(timer);
+            $("#lockDiv").removeClass("show").addClass("hide");
+            $("#test").removeClass("hide").addClass("show");
+
+            setTimeout(function () {
+                document.getElementById('test').innerHTML = 'Un-Lock in few seconds...';
+            }, 500)
+
+            setTimeout(function () {
+                document.getElementById('test').innerHTML = 'Successfully Un-Locked and redirecting you to PDR dashboard!.';
+            }, 3000)
+
+
+            setTimeout(function () {
+                window.location.href = '/PDReview/';
+            }, 5000)
+
+            return;
+        }
+        else if (distance < 10000) {
+            $("#lockTimerContainer").removeClass("alert-info").addClass("alert-danger");
+            $("#lockTimerImg").removeClass("hide").addClass("show");
+            $("#lockMessage").scrollTop(10);
+            $("#lockMessage").removeClass("hide").addClass("show");
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+
+        //document.getElementById('timecountdown').innerHTML = hours + 'hrs ';
+        document.getElementById('timecountdown').innerHTML = minutes + 'mins ';
+        document.getElementById('timecountdown').innerHTML += seconds + 'secs';
+    }
+
+    if (isLockedByMe == 'True') {
+        timer = setInterval(showRemaining, 1000);
+    }
+
+
+
+
+
+</script>
+
+
+@*<div class="container">
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>*@
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div style=" margin:75px 0 0 0">
+            @Html.HiddenFor(m => Model.PDRId)
+
+            @* Infor sections *@
+
+
+            @if (Model.IsLockedByCurrentUser)
+            {
+                <div id="lockTimerContainer" class="alert alert-info" style="color:#222222; font-weight:500; padding-bottom:10px;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div id="lockDiv">
+                                    <span class="glyphicon glyphicon-time" style="padding-right:10px;"></span>
+                                    <span>This PDR is <u>locked</u>  by you, PDR will automatically <u>un-lock</u>  after <span id="timecountdown" style="padding-right:10px; font-size:26px;"></span>, unless <a href="@Url.Action("ShowPDRDetails", new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod, refresh = true})" style="font-size:16px;" class="label label-primary"> refresh timer.</a> </span>
+                                    @*<p><label class="label label-danger">Note: Save your work before refresh the timer.</label> </p>*@
+                                </div>
+                                <div id="test" class="hide"></div>
+                                <div id="lockMessage" style="height:400px; padding:50px;" class="text-center hide">
+
+                                    <p>You will be re-direct to dashboard in a few seconds.</p>
+                                    <p>Save your work as soon as possible</p>
+                                    <p>If you want to continue editing PDR, please refresh the timer else click ignore.</p>
+                                    <p><button>Refresh</button> <button>Ignore</button></p>
+                                </div>
+                            </div>
+                            <div id="lockTimerImg" class="col-md-2 pull-right hide"><img width="50" height="50" class="img-responsive1" src="~/assets/img/timer_alert_2.gif" /></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <div class="alert alert-info" style="color:#222222; font-weight:500; padding-bottom:10px;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <span class="glyphicon glyphicon-eye-open" style="padding-right:10px;"> </span>  @Html.DisplayFor(m => m.CurrentPDRStatus)
+
+                @if (!Model.IsDisableWholeView && Model.IsLockedByCurrentUser)
+                {
+                    if (Model.PDReviewViewModel.MidYearStatusE == NewPDR.Service.CurrentPDRStatuses.Started)
+                    {
+                        if (Model.IsReadyToCloseMidYear)
+                        {
+                            <div class="pull-right" style="padding-right:10px;">@Html.ActionLink("Close mid year PDR", "CloseMidYearPDR", new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod }, new { @class = "btn btn-md btn-primary" })</div>
+                        }
+
+                    }
+                    else if (Model.PDReviewViewModel.MidYearStatusE == NewPDR.Service.CurrentPDRStatuses.Completed && Model.PDReviewViewModel.FullYearStatusE == NewPDR.Service.CurrentPDRStatuses.Started)
+                    {
+                        if (Model.IsReadyToCloseFullYear)
+                        {
+                            <div class="pull-right" style="padding-right:10px;">@Html.ActionLink("Close full year PDR", "CloseFullYearPDR", new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod }, new { @class = "btn btn-md btn-primary" })</div>
+                        }
+
+                    }
+                }
+            </div>
+
+            @* warning section *@
+            @if (Model.IsDisableWholeView)
+            {
+                if (!Model.IsLockedByCurrentUser)
+                {
+                    <div id="requestUnlockContainerOuter">
+                        @Html.Partial("_RequesUnlockPartialView", Model)
+                    </div>
+
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <span class="glyphicon glyphicon-arrow-right" style="padding-right:10px;"> </span> 
+
+                        @if (Model.PDReviewViewModel.MidYearStatusE == NewPDR.Service.CurrentPDRStatuses.NotStarted)
+                        {
+                            <span> Current View is disabled, In order to continue/edit please<span class="" style="padding-right:10px; color:black"><u>@Html.ActionLink(" click here to open mid year PDR.", "OpenMidYearPDR", new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod }, new { @class = "", style = "color:black; font-weight:bold;" })</u> </span></span>
+                        }
+                        else if (Model.PDReviewViewModel.MidYearStatusE == NewPDR.Service.CurrentPDRStatuses.Completed && Model.PDReviewViewModel.FullYearStatusE == NewPDR.Service.CurrentPDRStatuses.NotStarted)
+                        {
+                            <div class="pull-right" style="padding-right:10px;">@Html.ActionLink("Open full year PDR", "OpenFullYearPDR", new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod }, new { @class = "btn btn-md btn-primary" })</div>
+                        }
+                    </div>
+                }
+            }
+
+            @* Lock sections *@
+            <div id="unLockRequestAccessOrDenyContainer">
+                @Html.Partial("_UnLockRequestAccessOrDeny", Model)
+            </div>
+
+
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#home"> PDR and Objectives </a></li>
+                <li><a data-toggle="pill" href="#menu1"> Success Factors </a></li>
+                <li><a data-toggle="pill" href="#menu2"> PDP and Aspirations </a></li>
+                <li><a data-toggle="pill" href="#menu3"> Sign Off and Comments </a></li>
+                <li><a data-toggle="pill" href="#menu0"> PDR Information </a></li>
+                <li>
+                    <a href="@Url.Action("DownloadPDR", "PDReview",new { revieweeID = Model.PDRId, reviewPeriod = Model.ReviewPeriod })">
+                        <span title="Click here to download @Model.PDReviewViewModel.ReviewUserEmail's  PDR for year @Model.ReviewPeriod.Year." class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="menu0" class="tab-pane fade">
+                    @if (Model != null)
+                    {
+                        @Html.Partial("_PDRInfoPartialView", Model.PDReviewViewModel)
+                    }
+                </div>
+                <div id="home" class="tab-pane fade in active">
+                    @if (Model != null)
+                    {
+                        @Html.Partial("_ObjectivesPartial", Model.Objectives)
+                        Html.RenderPartial("_OverallObjectiveRatings", Model);
+                    }
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    @if (Model != null)
+                    {
+                        @Html.Partial("_SuccessFactorPartial", Model.SuccessFactors)
+                        @Html.Partial("_OverallSuccessFactorRatings", Model)
+                    }
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    @if (Model != null)
+                    {
+                        @Html.Partial("_PersonalDevelopmentPlanPartial", Model.PDPlans)
+                    }
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    @if (Model != null)
+                    {
+                        if (Model.IsDisableWholeView)
+                        {
+                            //Disable view if pdr is not started
+                            <div style=" opacity:1; pointer-events:none;">
+                                @Html.Partial("_SignoffAndSummaryPartial", Model.PDReviewViewModel)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.Partial("_SignoffAndSummaryPartial", Model.PDReviewViewModel)
+                        }
+                        @Html.Partial("_OverallAnnualRatings", Model)
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@model List<NewPDR.Web.ViewModel.ObjectiveViewModel>
+
+@for (int i = 0; i < Model.Count(); i++)
+{
+    using (Ajax.BeginForm("ShowPDRDetails", "PDReview", new AjaxOptions { InsertionMode = InsertionMode.Replace, OnSuccess = "ObjectiveSaveSuccess", OnComplete = "ObjectiveSaveCompleted", OnFailure = "ObjectiveSaveFailed", LoadingElementId = "", UpdateTargetId = "Form" + i }, new { id = "Form" + i, @class = "testAjax", data_assigned_id = i }))
+    {
+        var collapsePanelIndex = "cp" + Model[i].ObjectiveIndex;
+        @Html.HiddenFor(m => Model[i].ID)
+        @Html.HiddenFor(m => Model[i].SuccessMessage)
+        @Html.HiddenFor(m => Model[i].ObjectiveIndex, new { @class = "ObjectiveIndexHidden" })
+        <input type="hidden" value="@i" />
+        <div id="objPanel" class="panel-group" style="margin :15px 0 15px 0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#@collapsePanelIndex" aria-expanded="true" aria-controls="collapseOne">
+                            @Html.DisplayFor(m => Model[i].ObjectiveType.Name)
+                        </a>
+                    </h2>
+
+                </div>
+                <div id=@collapsePanelIndex data-collapsed-index="@collapsePanelIndex" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div style="padding:20px; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important;">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].Description)
+
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => Model[i].SelectedMidYearRating)
+
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => Model[i].SelectedFullYearRating)
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+                                    @if (!Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].Description, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                        @Html.ValidationMessageFor(m => Model[i].Description)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].Description, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                    }
+
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 well" style="min-height:100px;">
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.LineManager && !Model[i].IsDisableWholeView)
+                                    {
+                                        if (Model[i].MidYearStatus == NewPDR.Service.CurrentPDRStatuses.Started)
+                                        {
+                                            @Html.DropDownListFor(m => Model[i].SelectedMidYearRating, Model[i].MidYearRatings, "- Please select ratings -", new { @class = "form-control controls" })
+                                        }
+                                        else
+                                        {
+                                            <label class="@(Model[i].SelectedMidYearRating.StartsWith("Not") ? "label label-danger" : "label label-info")" style="font-size:16px;">@Html.DisplayFor(m => Model[i].SelectedMidYearRating, new { @class = "form-control controls" })</label>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label class="@(Model[i].SelectedMidYearRating.StartsWith("Not") ? "label label-danger" : "label label-info")" style="font-size:16px;">@Html.DisplayFor(m => Model[i].SelectedMidYearRating, new { @class = "form-control controls" })</label>
+                                       <br /> <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                    }
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 well" style="min-height:100px;">
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.LineManager && !Model[i].IsDisableWholeView)
+                                    {
+                                        if (Model[i].FullYearStatus == NewPDR.Service.CurrentPDRStatuses.Started)
+                                        {
+                                            @Html.DropDownListFor(m => Model[i].SelectedFullYearRating, Model[i].FullYearRatings, "- Please select ratings -", new { @class = "form-control controls" })
+                                        }
+                                        else
+                                        {
+                                            <label class="@(Model[i].SelectedFullYearRating.StartsWith("Not") ? "label label-danger" : "label label-info")" style="font-size:16px;">@Html.DisplayFor(m => Model[i].SelectedFullYearRating, new { @class = "form-control controls" })</label>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label class="@(Model[i].SelectedFullYearRating.StartsWith("Not") ? "label label-danger" : "label label-info")" style="font-size:16px;">@Html.DisplayFor(m => Model[i].SelectedFullYearRating, new { @class = "form-control controls" })</label>
+                                    }
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].ColleagueEvidence, new { @class = "pull-left" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].ManagerEvidence, new { @class = "pull-left" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="min-height:100px;">
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.Colleague && !Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].ColleagueEvidence, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter collegue evidence..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].ColleagueEvidence, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter collegue evidence..." })
+                                    }
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.LineManager && !Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].ManagerEvidence, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px; ", placeholder = "Enter manager evidence..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].ManagerEvidence, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter manager evidence..." })
+                                    }
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].ColleagueComments, new { @class = "pull-left" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    @Html.LabelFor(m => Model[i].ManagerComments, new { @class = "pull-left" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="min-height:100px;">
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.Colleague && !Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].ColleagueComments, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter collegue comments..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].ColleagueComments, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter collegue comments..." })
+                                    }
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 well" style="min-height:100px;">
+                                    @if (Model[i].WhoAmI == NewPDR.Service.WhoAmI.LineManager && !Model[i].IsDisableWholeView)
+                                    {
+                                        @Html.TextAreaFor(m => Model[i].ManagerComments, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter manager comments..." })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(m => Model[i].ManagerComments, new { cols = "100", rows = "5", style = " max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter manager comments..." })
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (!Model[i].IsDisableWholeView)
+                    {
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <input type="hidden" name="Index" value="@i" />
+                                    <button type="submit" id="@Model[i].ObjectiveIndex" class="btn btn-lg btn-primary pull-right btn-block"><h4><i class="fa fa-database"></i>  Save</h4></button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.ColleaguesViewModel>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12" id="colleaguepdrListContainer">
+        <table style="width: 100%" class="table table-hover">
+            @if (Model.Any())
+            {
+                <thead>
+                    <tr>
+                        <th style="font-weight:500">NAME</th>
+                        <th style="font-weight:500">EMAIL</th>
+                        <th style="font-weight:500">USER FROM</th>
+                        <th style="font-weight:500; width:250px;">CURRENT PDRs</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="color:#282D32; font-weight:400;">
+                    @foreach (var reviewee in Model)
+                    {
+                        <tr>
+                            <td>@string.Format("{0} {1}", reviewee.FirstName, reviewee.Surname)</td>
+                            <td>@reviewee.ColleagueUser.UserName</td>
+                            <td>@reviewee.UserFrom</td>
+                            <td>
+                                @foreach (var rp in @reviewee.PDReviews)
+                                {
+                                    @Html.ActionLink(@rp.ReviewPeriod.Year.ToString(), "ShowPDRDetails", new { revieweeID = @rp.ID, reviewPeriod = @rp.ReviewPeriod.ToString("MM-dd-yyyy") }, new { style = "color:black;", @class = "btn btn-link" })
+                                }
+                            </td>
+                            <td>
+
+                                @Ajax.ActionLink(" Create PDR ", "CreateReviewerPDR", new { reviewerUserId = @reviewee.ColleagueUser.Id }, new AjaxOptions
+                              {
+                                  HttpMethod = "GET",
+                                  InsertionMode = InsertionMode.Replace,
+                                  UpdateTargetId = "colleaguepdrListContainer",
+                                  OnSuccess = "colleaguePDRCreatedSuccess"
+                              }, new { @class = "btn btn-md btn-danger btn btn-md btn-primary glyphicon glyphicon-plus" })
+                        </tr>
+                    }
+
+                </tbody>
+            }
+            else
+            {
+                <thead>
+                    <tr>
+                        <th><h4>No PDR Exist.</h4></th>
+
+                    </tr>
+                </thead>
+
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+C:\PDR\New PDR\NewPDR\NewPDR.Core\bin\Release\NewPDR.Core.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Core\bin\Release\NewPDR.Core.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.Core\obj\Release\NewPDR.Core.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Core\obj\Release\NewPDR.Core.pdb

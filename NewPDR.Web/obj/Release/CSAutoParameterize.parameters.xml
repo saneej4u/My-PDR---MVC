@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="NewPDRDataContext-Web.config Connection String" description="NewPDRDataContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:touktnm492.database.windows.net,1433;Initial Catalog=mypdr_db;User Id=saneej1982@touktnm492;Password=*jeenas1982;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\PDR\\New\ PDR\\NewPDR\\NewPDR\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NewPDRDataContext']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.Web", "NewPDR.Web\NewPDR.Web.csproj", "{FCB7F5E7-0FFD-4218-9816-AA64E174B639}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.Model", "NewPDR.Model\NewPDR.Model.csproj", "{5B996C73-3B4C-406C-8872-587062F72648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.Data", "NewPDR.Data\NewPDR.Data.csproj", "{BA2198EA-2DF9-494C-849C-F69E5BC0320F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.Service", "NewPDR.Service\NewPDR.Service.csproj", "{E77048AC-811A-4F5E-9DCD-D2411AD89880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.Core", "NewPDR.Core\NewPDR.Core.csproj", "{DF32E0EA-F76A-4D44-9F8B-EDBB4D7723EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.WebAPI", "NewPDR.WebAPI\NewPDR.WebAPI.csproj", "{99F999FB-AD45-4418-BB7F-04622843AE99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPDR.UnitTests", "NewPDR.UnitTests\NewPDR.UnitTests.csproj", "{F92B96CA-F13E-4B11-AAE9-2EF6DD342692}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://saneej4u.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NewPDR.Data\\NewPDR.Data.csproj
+		SccProjectName1 = NewPDR.Data
+		SccLocalPath1 = NewPDR.Data
+		SccProjectUniqueName2 = NewPDR.Model\\NewPDR.Model.csproj
+		SccProjectName2 = NewPDR.Model
+		SccLocalPath2 = NewPDR.Model
+		SccProjectUniqueName3 = NewPDR.Service\\NewPDR.Service.csproj
+		SccProjectName3 = NewPDR.Service
+		SccLocalPath3 = NewPDR.Service
+		SccProjectUniqueName4 = NewPDR.Web\\NewPDR.Web.csproj
+		SccProjectName4 = NewPDR.Web
+		SccLocalPath4 = NewPDR.Web
+		SccProjectUniqueName5 = NewPDR.Core\\NewPDR.Core.csproj
+		SccProjectName5 = NewPDR.Core
+		SccLocalPath5 = NewPDR.Core
+		SccProjectUniqueName6 = NewPDR.WebAPI\\NewPDR.WebAPI.csproj
+		SccProjectName6 = NewPDR.WebAPI
+		SccLocalPath6 = NewPDR.WebAPI
+		SccProjectUniqueName7 = NewPDR.UnitTests\\NewPDR.UnitTests.csproj
+		SccProjectName7 = NewPDR.UnitTests
+		SccLocalPath7 = NewPDR.UnitTests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCB7F5E7-0FFD-4218-9816-AA64E174B639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB7F5E7-0FFD-4218-9816-AA64E174B639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB7F5E7-0FFD-4218-9816-AA64E174B639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB7F5E7-0FFD-4218-9816-AA64E174B639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B996C73-3B4C-406C-8872-587062F72648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B996C73-3B4C-406C-8872-587062F72648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B996C73-3B4C-406C-8872-587062F72648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B996C73-3B4C-406C-8872-587062F72648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA2198EA-2DF9-494C-849C-F69E5BC0320F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA2198EA-2DF9-494C-849C-F69E5BC0320F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA2198EA-2DF9-494C-849C-F69E5BC0320F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA2198EA-2DF9-494C-849C-F69E5BC0320F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77048AC-811A-4F5E-9DCD-D2411AD89880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77048AC-811A-4F5E-9DCD-D2411AD89880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77048AC-811A-4F5E-9DCD-D2411AD89880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77048AC-811A-4F5E-9DCD-D2411AD89880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF32E0EA-F76A-4D44-9F8B-EDBB4D7723EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF32E0EA-F76A-4D44-9F8B-EDBB4D7723EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF32E0EA-F76A-4D44-9F8B-EDBB4D7723EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF32E0EA-F76A-4D44-9F8B-EDBB4D7723EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F999FB-AD45-4418-BB7F-04622843AE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F999FB-AD45-4418-BB7F-04622843AE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F999FB-AD45-4418-BB7F-04622843AE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F999FB-AD45-4418-BB7F-04622843AE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F92B96CA-F13E-4B11-AAE9-2EF6DD342692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F92B96CA-F13E-4B11-AAE9-2EF6DD342692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F92B96CA-F13E-4B11-AAE9-2EF6DD342692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F92B96CA-F13E-4B11-AAE9-2EF6DD342692}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

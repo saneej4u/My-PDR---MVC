@@ -1,0 +1,57 @@
+﻿@model  NewPDR.Web.ViewModel.MidYearChartViewModel
+
+@if (Model != null)
+{
+    <div style="background:inherit;">
+        @if (Model.IsChartValueZero)
+        {
+            <div style="width:350px; height:180px; background:inherit;">
+                <h3 class="tilecaption">
+                    <a href="#" class="btn btn-md btn-block" style="color:white; font-size:22px;">
+                        <i class="fa fa-area-chart fa-3x"></i><strong> No Graph yet</strong>
+                    </a>
+                </h3>
+            </div>
+        }
+        else
+        {
+
+            string myTheme =
+              @"<Chart BackColor=""#5133AB"" >
+                        <ChartAreas>
+                            <ChartArea Name=""Default"" BackColor=""#5133AB""></ChartArea>
+                        </ChartAreas>
+                    </Chart>";
+
+            var myChart = new Chart(width: 350, height: 200, theme: myTheme)
+           .AddTitle(Model.ChartTitle)
+           .AddSeries(
+           name: Model.Name,
+           chartType: Model.ChartType,
+           xValue: Model.xValues,
+           yValues: Model.yValues);
+            var base64 = Convert.ToBase64String(myChart.GetBytes());
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+
+            <div style="width:100%; height:100%; background:inherit;"><img style="background:inherit" src="@imgSrc" /></div>
+        }
+
+    </div>
+}
+else
+{
+    <div style="width:350px; height:180px; background:inherit;">
+        <h3 class="tilecaption">
+            <a href="#" class="btn btn-md btn-block" style="color:white; font-size:22px;">
+                <i class="fa fa-area-chart fa-3x"></i><strong> No Graph yet</strong>
+            </a>
+        </h3>
+    </div>
+}
+
+
+
+
+
+

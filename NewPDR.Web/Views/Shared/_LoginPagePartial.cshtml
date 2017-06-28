@@ -1,0 +1,38 @@
+﻿@using NewPDR.Web.Models
+@model LoginViewModel
+
+<link rel="stylesheet" href="~/assets/css/form-elements.css">
+
+<div class="form-box">
+    <div class="form-top">
+        <div class="form-top-left">
+            <h3>Login to our site</h3>
+            <p>Enter username and password to log on:</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-top-right">
+            <i class="fa fa-lock"></i>
+        </div>
+    </div>
+
+    <div class="form-bottom">
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-username", id = "form-username", placeholder = "Username..." })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-password", placeholder = "Password...", id = "form-password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <button type="submit" class="btn">Sign in!</button>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,110 @@
+﻿@model NewPDR.Web.ViewModel.PDRDetailsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DownloadPDR</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            @foreach (var obj in Model.Objectives)
+            {
+                <div id="objPanel" class="panel-group" style="margin :15px 0 15px 0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">@Html.DisplayFor(m => obj.ObjectiveType.Name)</h2>
+                        </div>
+                        <div class="panel-collapse collapse">
+                            <div class="panel-body">
+                              
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>@Html.LabelFor(m => obj.SelectedMidYearRating)</th>
+                                        <td>@Html.DisplayFor(m => obj.SelectedMidYearRating, new { @class = "form-control controls" })</td>
+                                        <th>@Html.LabelFor(m => obj.SelectedFullYearRating)</th>
+                                        <td><label class="label label-info" style="font-size:16px;">@Html.DisplayFor(m => obj.SelectedFullYearRating, new { @class = "form-control controls" })</label></td>
+                                    </tr>
+                                </table>
+
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>@Html.LabelFor(m => obj.Description)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => obj.Description, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })</td>
+                                    </tr>
+                                </table>
+
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>
+                                            @Html.LabelFor(m => obj.ColleagueEvidence)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => obj.ColleagueEvidence, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>
+                                            @Html.LabelFor(m => obj.ManagerEvidence)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => obj.ManagerEvidence, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>
+                                            @Html.LabelFor(m => obj.ColleagueComments)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => obj.ColleagueComments, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table style="padding:20px; margin-bottom:50px; text-align:left; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important; width:100%">
+                                    <tr>
+                                        <th>
+                                            @Html.LabelFor(m => obj.ManagerComments)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => obj.ManagerComments, new { style = "max-width:100%; width:100% ; min-height:100px;", placeholder = "Enter description..." })
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+</body>
+</html>

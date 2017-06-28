@@ -1,0 +1,25 @@
+﻿@model  IEnumerable<NewPDR.Web.ViewModel.ToDoListViewModel>
+<div class="row">
+    <div class="col-lg-11 col-md-11" style="padding-left:40px; color:white">
+        @foreach (var task in Model)
+        {
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-10">
+                    <label style=" font-weight:300">
+                        <input class="taskStatus" checked="@task.IsCompleted" data-taskid="@task.ID" type="checkbox" />
+                        @if (!task.IsCompleted)
+                        { @task.Task}
+                        else
+                        { <del>@task.Task</del>}
+                    </label>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-2 pull-right">@Ajax.ActionLink(" ", "DeleteTask", new { taskId = @task.ID }, new AjaxOptions {
+                                              HttpMethod = "GET",
+                                              InsertionMode = InsertionMode.Replace,
+                                              UpdateTargetId = "toDoPartialViewContainer",
+                                              OnSuccess = "deleteTaskSuccess"
+                                                     }, new { @class = "glyphicon glyphicon-remove", style = "color:white;", title="Click here to remove task from the list." })</div>
+            </div>
+        }
+    </div>
+</div>

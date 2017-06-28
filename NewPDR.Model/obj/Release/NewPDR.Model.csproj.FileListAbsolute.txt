@@ -1,0 +1,13 @@
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\NewPDR.Model.dll.config
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\NewPDR.Model.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\NewPDR.Model.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\EntityFramework.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\EntityFramework.SqlServer.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\EntityFramework.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\EntityFramework.SqlServer.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Release\NewPDR.Model.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Release\NewPDR.Model.pdb

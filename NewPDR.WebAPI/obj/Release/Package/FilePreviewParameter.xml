@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Microsoft-ApiApp489ea47119434da09e1abbc26763fac5" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\PDR\\New\ PDR\\NewPDR\\NewPDR\.WebAPI\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\PDR\\New\ PDR\\NewPDR\\NewPDR\.WebAPI\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:touktnm492.database.windows.net,1433;Initial Catalog=mypdr_db;User Id=saneej1982@touktnm492;Password=*jeenas1982;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\PDR\\New\ PDR\\NewPDR\\NewPDR\.WebAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="NewPDRDataContext-Web.config Connection String" description="" value="Data Source=tcp:touktnm492.database.windows.net,1433;Initial Catalog=mypdr_db;User Id=saneej1982@touktnm492;Password=*jeenas1982;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\PDR\\New\ PDR\\NewPDR\\NewPDR\.WebAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NewPDRDataContext']/@connectionString" />
+  </parameter>
+</parameters>

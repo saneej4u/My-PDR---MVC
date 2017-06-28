@@ -1,0 +1,17 @@
+﻿@model List<NewPDR.Web.ViewModel.ColleaguesViewModel>
+@{
+    ViewBag.Title = "ShowColleagues";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div style=" margin:75px 0 0 0">
+            @Html.Partial("_ColleaugePDRListPartialShared", Model)
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,43 @@
+<div [@flyInOut]="flyInOut" style="background-color:#FFFFFF">
+
+    <div class="container">
+        <div class="row" style="margin:30px;">
+            <div class="col-sm-12 col-md-12 text-center">
+
+                <h1> <b>LOWER PRICES, SAME GREAT QUALITY</b> </h1>
+                <p class="lead">Wherever you see “New Lower Price” it means we’ve found a way to offer <br> your favourite products for less.</p>
+
+            </div>
+        </div>
+
+    </div>
+    <div>
+
+        <div class="row carousel-holder">
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="slide-image" src="./assets/images/carosol1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="card-container">
+            <div *ngFor="let product of products">
+                <my-product [product]="product"></my-product>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

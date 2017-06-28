@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="container">
+    <!-- Top content -->
+    <div class="top-content">
+
+        <div class="inner-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        @Html.Partial("_LoginPagePartial")
+                    </div>
+
+                    <div class="col-sm-1 middle-border"></div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-5">
+
+                        <div class="form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>No Account.</h3>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                                @Html.AntiForgeryToken()
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Get, new { role = "form" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.Label("", new { @class = "sr-only" })
+                                        @Html.TextBox("RegisterEmailTextbox", "", new { @class = "form-control form-username", placeholder = "Enter email..." })
+                                    </div>
+                                    <button type="submit" class="btn btn-block btn-lg btn-primary">Next</button>
+
+
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

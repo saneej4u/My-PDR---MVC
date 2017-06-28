@@ -1,0 +1,149 @@
+<md-sidenav-layout fullscreen>
+  <md-sidenav #sidenav align="start" mode="over">
+    <md-nav-list>
+      <a md-list-item *ngFor="let view of views">
+        <md-icon md-list-icon>{{view.icon}}</md-icon>
+        <span md-line>{{view.name}}</span>
+        <span md-line class="secondary">{{view.description}}</span>
+      </a>
+    </md-nav-list>
+  </md-sidenav>
+
+  <md-sidenav #shoppingCart align="end">
+    <md-nav-list>
+      <app-shopping-cart (click)="shoppingCart.close()">
+      </app-shopping-cart>
+    </md-nav-list>
+  </md-sidenav>
+
+  <md-toolbar style="background: white;color: #536468;" color="primary">
+    <button md-icon-button (click)="sidenav.open()" class="hide">
+      <md-icon>menu</md-icon>
+       <span style="font-size:22px;">  EZ-Pick</span>
+    </button>
+
+    <div style="position: absolute;right: 10px;">
+      <a class="btn btn-block1 btn-primary1" routerLink="" style="color:black;position: relative;right: 20px; background:#ACACB6">
+        <i class="fa fa-user" aria-hidden="true"></i> My Account</a>
+      <a *ngIf="!isLoggedin" class="btn btn-block1 btn-primary1" routerLink="/login" style="color:black;position: relative;right: 20px;background:#ACACB6">
+        <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+      <a *ngIf="isLoggedin" class="btn btn-block1 btn-warning1" (click)="logOut()" style="color:black;position: relative;right: 20px;background:#ACACB6">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+    </div>
+  </md-toolbar>
+
+  <div class="container" style="background-color:white;">
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-11 col-sm-11 col-md-11">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 navrightsan hide">
+                  <a class="btn btn-block1 btn-primary1" routerLink="" style="color:black;position: relative;right: 20px;">
+                    <i class="fa fa-user" aria-hidden="true"></i> My Account</a>
+                  <a *ngIf="!isLoggedin" class="btn btn-block1 btn-primary1" routerLink="/login" style="color:black;position: relative;right: 20px;">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                  <a *ngIf="isLoggedin" class="btn btn-block1 btn-warning1 " (click)="logOut()" style="color:black;position: relative;right: 20px;">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+
+              <img class="hide" style="width: 170px;position: relative;left: 0px;bottom: 87px;height: 150px;" src="./app/products/logo.png"
+                alt="LOGO">
+
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="inner-addon right-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="text" class="form-control" />
+
+              </div>
+
+
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-1">
+              <div class="row" style="float: right;">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                  <button (click)="shoppingCart.open()" style="background:white; border:none; outline:0;position: relative;top: -8px;"> 
+                     <span style="position:relative; left:25px; color:white;"> <b>{{basketCount}}</b> </span>  
+                      <i class="fa fa-shopping-bag fa-3x" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="row" style="margin-top:20px;">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <ul class="nav navbar-nav" style="font-size:15px;">
+                <li class="show">
+                  <a style="color:#536468; font-weight:bold; padding-top:30px " routerLink="/home" routerLinkActive="active">
+                  Home
+                   <i style="position: relative;top: -18px;right: 35px;" class="fa fa-home fa-2x" aria-hidden="true"></i>
+                  </a>
+
+                </li>
+                <li *ngFor="let cat of categories">
+                  <a style="color:#536468; font-weight:bold;padding-top:30px" [routerLink]="['/product-types',cat.categoryID]" routerLinkActive="active">{{cat.name}} 
+                     <i style="position: relative;top: -18px;right: 50px;" class="fa fa-home fa-2x" [ngClass]="cat.icon" aria-hidden="true"></i>
+                      </a>
+                </li>
+                <li>
+                  <a class="pull-right" style="color:#536468; font-weight:bold; padding-top:30px" routerLink="home" routerLinkActive="active">Today's Deal
+                      <i style="position: relative;top: -18px;right: 65px;" class="fa fa-fire fa-2x" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                  <a class="pull-right" style="color:#536468; font-weight:bold; padding-top:30px" routerLink="home" routerLinkActive="active">About Project
+                      <i style="position: relative;top: -18px;right: 65px;" class="fa fa-fire fa-2x" aria-hidden="true"></i>
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <footer class="footer" style="margin:50px 0;">
+    <div class="container text-center" style="border-bottom: 1px solid grey; border-top:1px solid grey;">
+      <h4> <b> USEFUL LINKS</b></h4>
+      <ul class="nav navbar-nav text-center" style="font-size:12px;">
+        <li>
+          <a style="color:#536468; font-weight:bold; padding-top:30px " routerLink="/home">Home</a>
+        </li>
+        <li *ngFor="let cat of categories">
+          <a style="color:#536468; font-weight:bold;padding-top:30px" [routerLink]="['/product-types',cat.categoryID]">{{cat.name}} </a>
+        </li>
+        <li>
+          <a class="pull-right" style="color:#536468; font-weight:bold; padding-top:30px" routerLink="home">Today's Deal </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</md-sidenav-layout>

@@ -1,0 +1,57 @@
+<div style="width:400px;">
+  <div class="row" style="margin:30px;">
+    <div class="col-md-12">
+      <button class="btn btn-md btn-block btn-primary" (click)="goToCheckOut()"> <i class="fa fa-cart-arrow-down fx-2x" aria-hidden="true" style="padding-right:5px;"></i> <b>  VIEW SHOPPING BAG</b> </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngFor="let items of addedItems">
+        <md-card>
+          <md-card-title-group>
+            <img md-card-sm-image src="app/products/images/{{items?.imageUrl}}">
+            <md-card-title style="font-size:14px !important;"> <span>{{items?.quantity}}</span> X <span>{{items?.name}}</span> </md-card-title>
+            <md-card-title>
+              <h3> {{items?.price | currency: 'GBP' : true}}</h3>
+            </md-card-title>
+            <md-card-subtitle>
+              <span>SUBTOTAL:</span> <span class="pull-right"> <b>{{items?.price * items?.quantity | currency : 'GBP' : true}} </b> </span>
+            </md-card-subtitle>
+            <md-card-subtitle>
+              <div> <button class="btn btn-sm" style="background:none;" (click)="goToCheckOut()"> <i class="fa fa-pencil" style="padding-right:10px;" aria-hidden="true"></i> CHANGE </button> </div>
+            </md-card-subtitle>
+          </md-card-title-group>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <md-card>
+        <md-card-title-group>
+          <md-card-title> Total Price: {{totalPrice | currency: 'GBP' : true}}</md-card-title>
+          <md-card-subtitle>(excluding delivery charge)</md-card-subtitle>
+        </md-card-title-group>
+      </md-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+    <div class="row" style="margin:30px;">
+      <div class="col-md-12">
+        <button class="btn btn-md btn-block btn-primary"> <i class="fa fa-cart-arrow-down fx-2x" aria-hidden="true" style="padding-right:5px;"></i> <b>  VIEW SHOPPING BAG</b> </button>
+      </div>
+    </div>
+  </div>
+</div>

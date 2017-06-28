@@ -1,0 +1,28 @@
+﻿@model NewPDR.Web.ViewModel.PDRDetailsViewModel
+
+@if (Model.IsLockedByCurrentUser)
+{
+    if (Model.IsAnyAccessRequest)
+    {
+        //Ajax partial update every 2 minutes
+        <div class="alert alert-danger" style="color:#222222; font-weight:500; padding-bottom:10px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span class="glyphicon glyphicon-lock" style="padding-right:10px;"> </span> Un-Lock request</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Request from  @Model.AcessRequestedUserId to unlock.</p>
+                </div>
+                <div class="modal-footer">
+                    <p class="pull-left"><strong>Warning: </strong> Save your work before accept or deny.</p>
+                    @Html.ActionLink("Accept", "UnLockRequestAccepted", "PDReview", new { pdrId = Model.PDRId }, new { @class = "btn btn-primary pull-right", style = "margin-right:10px" })
+
+                    @Html.ActionLink("Deny", "UnLockRequestDenied", "PDReview", new { pdrId = Model.PDRId }, new { @class = "btn btn-primary pull-right", style = "margin-right:10px" })
+
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

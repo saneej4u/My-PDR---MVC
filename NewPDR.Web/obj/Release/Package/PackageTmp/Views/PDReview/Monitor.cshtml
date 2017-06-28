@@ -1,0 +1,61 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.ColleaguesViewModel>
+@{
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Monitor</title>
+</head>
+<body>
+    <div class="mainMargin"><h2 style="font-size:28px;" class="page-header"> <i class="fa fa-television"></i> Monitor Performance </h2></div>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12" id="colleaguepdrListContainer">
+            <div class="row">
+                <div class="col-md-12">
+                    <table style="width: 100%" class="table table-hover">
+                        @if (Model.Any())
+                            {
+                            <thead>
+                                <tr>
+                                    <th style="font-weight:500">NAME</th>
+                                    <th style="font-weight:500">EMAIL</th>
+                                    <th style="font-weight:500">USER FROM</th>
+                                    <th style="font-weight:500" class="pull-right">MONITOR</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:#282D32; font-weight:400;">
+                                @foreach (var reviewee in Model)
+                                    {
+                                <tr>
+                                    <td>@string.Format("{0}", reviewee.FirstName)</td>
+                                    <td><a href="@Url.Action("ProfileDetails", "Profile", new { emailId = @reviewee.ColleagueUser.UserName})" style="color:#00BCF2; text-decoration:underline">@reviewee.ColleagueUser.UserName</a>  </td>
+                                    <td>@reviewee.UserFrom</td>
+                                    <td class="pull-right">
+                                        <a href="@Url.Action("Index", "Monitor", new { userId = @reviewee.ColleagueUser.Id })" class="btn btn-primary btn-md">
+                                            <i class="fa fa-television fa-1x"></i>  <strong></strong>
+                                        </a>
+
+
+
+                                    </td>
+                                </tr>
+                                    }
+                            </tbody>
+
+                            }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

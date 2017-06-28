@@ -1,0 +1,84 @@
+<div class="container" style="margin-top:50px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="panel panel-default" style="min-height:400px;">
+                        <div class="panel-body">
+                            <img style="max-height:400px; min-height:400px;" class="img-responsive" alt="Image Alt" src="app/products/images/{{mainImageUrl}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4" *ngFor="let productImage of selectedProduct?.productImages">
+                    <div (click)="showSelectedImage(productImage)" class="panel panel-default" style="min-height:100px; cursor:pointer">
+                        <div class="panel-body">
+                            <img style="max-height:100px;" class="img-responsive" alt="{{productImage?.name}}" src="app/products/images/{{productImage?.imageUrl}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <md-card style="padding-bottom:50px">
+                <md-card-subtitle>Subtitle first</md-card-subtitle>
+                <md-card-title>{{selectedProduct?.name}}</md-card-title>
+                <md-card-content>
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h1>
+                                <p>{{selectedProduct?.unitPrice | currency :'GBP' :true}}</p>
+                            </h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad</p>
+
+                                <p>W x H x D</p>
+                                <p><a href="#">View more product information</a></p>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top:30px; margin-bottom:30px;">
+
+                        <div class="col-xs-6 col-sm-6 col-md-6 mycontent-left" style="color:grey">
+                            <span> <i class="fa fa-building-o fa-lg" aria-hidden="true"></i> Collection only</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6" style="color:grey">
+                            <span><i class="fa fa-truck fa-lg" aria-hidden="true"></i> Available Online</span>
+                        </div>
+                    </div>
+                </md-card-content>
+                <md-card-actions >
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-sm-6 col-md-6  text-left" style="vertical-align:middle">
+                            <label>QUANTITY:</label>       
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 ">
+    
+                            <input style="width:50px;" class="form-control pull-right text-center" [(ngModel)]="quantity" type="text" name="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <button class="btn btn-lg btn-block btn-primary" (click)="addToShoppingBag(selectedProduct)">ADD TO SHOPPING BAG</button>
+                        </div>
+                    </div>
+
+                </md-card-actions>
+            </md-card>
+
+        </div>
+    </div>
+
+</div>

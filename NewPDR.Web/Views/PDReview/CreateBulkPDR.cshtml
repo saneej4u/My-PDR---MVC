@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.ColleaguesViewModel>
+
+@{
+    ViewBag.Title = "Create Team PDR";
+}
+
+<div class="mainMargin"><h2 style="font-size:28px;" class="page-header"> <i class="fa fa-plus-circle"></i> Create PDR</h2></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="well">
+            <div class="row">
+                @for (int i = 0; i <= 2; i++)
+                {
+                    DateTime rPeriod = DateTime.Today.AddYears(i);
+                    var text = string.Format("PDR for period {0}", rPeriod.Year);
+                    <div class="col-md-2 col-sm-2">
+                        @Ajax.ActionLink(text, "CreateTeamBulkPDR", new { reviewPeriod = rPeriod }, new AjaxOptions
+                       {
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace,
+                           UpdateTargetId = "createTeamBulkPDRContainer",
+                           OnSuccess = "colleaguePDRCreatedSuccess"
+                       }, new { @class = "btn btn-md btn-primary" })
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12"><label class=" label label-danger">Note: </> Creates bulk PDR for your team members </label> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" >
+    <div class="col-md-12 col-sm-12">
+        <div id="createTeamBulkPDRContainer">@Html.Partial("_ColleaugePDRListPartial", Model)</div>
+    </div>
+</div>
+
+

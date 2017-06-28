@@ -1,0 +1,55 @@
+﻿@model NewPDR.Web.ViewModel.PDRDetailsViewModel
+<div class="alert alert-danger" role="alert" style="color:black;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div style="color:#D9534F;" id=" requestunlockcontainer">
+
+        <span class="glyphicon glyphicon-lock" style="color:#D9534F; padding-right:10px;"> </span>
+        Current View is locked by <strong>@Model.LockedBy</strong>  at <strong>@Model.LockedAt</strong>.
+
+        @*@if (Model.IsAnyAccessResponse)
+            {
+                if (Model.AccessResponse == "Denied")
+                {
+                    <span>Your request to Un-Lock is @Model.AccessResponse.</span>
+                }
+
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(Model.AccessRequest))
+                {
+                    @Ajax.ActionLink("Request for unlock", "UnLockRequest", new { pdrId = Model.PDRId }, new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "requestUnlockContainer",
+                    OnSuccess = "requestSentSuccess"
+                }, new { @class = "btn btn-primary pull-right", style = "margin-right:10px" })
+                }
+                else
+                {
+                    <span>Request sent to @Model.LockedBy.</span>
+                }
+            }*@
+
+        @if (string.IsNullOrEmpty(Model.AccessRequest))
+        {
+            @*@Ajax.ActionLink("Request for unlock", "UnLockRequest", new { pdrId = Model.PDRId }, new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "requestUnlockContainer",
+                    OnSuccess = "requestSentSuccess"
+                }, new { @class = "btn btn-primary pull-right", style = "margin-right:10px" })*@
+
+            <button id="sendmessage" class="btn btn-md btn-primary pull-right" style="margin-right:10px">Request for unlock</button>
+        }
+        else
+        {
+            <span>Request sent to @Model.LockedBy.</span>
+        }
+
+
+
+    </div>
+</div>

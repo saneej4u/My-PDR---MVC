@@ -1,0 +1,21 @@
+﻿
+@model NewPDR.Web.ViewModel.PDReviewViewModel
+
+<div id="managerSignedTextBoxContainer">
+    @if (Model.IsManagerSigned)
+    {
+        <div class="pull-right" style="background:#F5F5F5;">
+            <table>
+                <tr>
+                    <td><strong>Signature: </strong> </td>
+                    <td>@Html.DisplayFor(m => Model.ManagerSigned, new { style = "margin-left:5px;", disabled = "disabled", id = "ManagerSignedTextBox" })</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Date: </strong></td>
+                    <td>@Html.DisplayFor(m => Model.ManagerSignedDate, new { style = " margin-left:5px; max-width:100%; width:100% ", @class = "form-control" })</td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>

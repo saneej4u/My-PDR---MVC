@@ -1,0 +1,497 @@
+﻿@model NewPDR.Web.ViewModel.TitleViewModel
+@using NewPDR.Web.Extensions;
+
+<div class="row">
+
+    <div class="col-ld-6 col-md-6 col-sm-6 col-xs-6">
+        <h3 style="color:white"><strong> General </strong> </h3>
+        <div style="padding:10px 10px 10px 20px;" class="dynamicTile">
+            <div class="row">
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile11" class="tile">
+                        <div class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("CreateBulkPDR", "PDReview")" class="tileClass">
+                                            <i class="fa fa-plus fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("CreateBulkPDR", "PDReview")">Create PDR</a> </strong></p>
+                                </div>
+                                <div class="item">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("CreateBulkPDR", "PDReview")" class="tileClass">
+                                            <i class="fa fa-plus-square-o fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("CreateBulkPDR", "PDReview")">Create PDR</a></strong></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile8" class="tile">
+
+
+                        <div class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("Index","Profile")" class="tileClass">
+                                            <i class="fa fa-user fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("Index", "Profile")">Profile</a> </strong></p>
+                                </div>
+                                <div class="item">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("Index","Profile")" class="tileClass">
+                                            <i class="fa fa-user-md fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("Index", "Profile")">Profile</a></strong></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-sm-2 col-xs-8">
+                        <div id="tile9" class="tile">
+
+                            <h5 class="tilecaption">
+                                <a href="#" class="tileClass">
+                                    <i class="fa fa-child fa-3x"></i><strong>20 Visitors</strong>
+                                </a>
+                            </h5>
+                        </div>
+                    </div>*@
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile6" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDR","PDReview")" class="tileClass">
+                                <i class="fa fa-users fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDR", "PDReview")">All PDR</a></strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile10" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("Monitor", "PDReview", new { @*userId = Model.ApplicationUserId*@ })" class="tileClass">
+                                <i class="fa fa-gears fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("Monitor", "PDReview")">Settings</a></strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile5" class="tile">
+
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDRToDownload", "PDReview")" class="tileClass">
+                                <i class="fa fa-download fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDRToDownload", "PDReview")">Download PDR</a> </strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-8">
+                    <div id="tile12" class="tile">
+
+
+                        <div class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("Monitor", "PDReview", new{ @*userId = Model.ApplicationUserId*@ })" class="tileClass">
+                                            <i class="fa fa-television fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("Monitor", "PDReview")">Monitor Performance</a></strong></p>
+                                </div>
+                                <div class="item">
+                                    <h5 class="tilecaption">
+                                        <a href="@Url.Action("Monitor", "PDReview", new{ @*userId = Model.ApplicationUserId*@ })" class="tileClass">
+                                            <i class="fa fa-mortar-board fa-3x"></i>
+                                        </a>
+                                    </h5>
+                                    <p style="color:white;" class="text-center"><strong><a href="@Url.Action("Monitor", "PDReview")">Monitor Performance</a></strong></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:30px;">
+                <div class="col-sm-12 col-xs-12"> </div>
+            </div>
+
+            <div class="row">
+                @if (Model.MyPDR != null)
+                {
+                    <h3 style="color:white"><strong>My PDR status</strong> </h3>
+
+                    <ul id="dashboardtab" class="nav nav-pills">
+                        <li class="active">
+                            <a href="#1a" data-toggle="tab">Current PDR status</a>
+                        </li>
+                        <li>
+                            <a href="#2a" data-toggle="tab">Pie Chart</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="1a">
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12">
+                                        <div id="tile14" class="tilePDRStatus panel panel-default">
+                                            <div class="panel-heading">
+                                                <i class="fa fa-hand-peace-o" aria-hidden="true"> </i><b> PDR for Year @Model.MyPDR.ReviewPeriod.Year </b>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                                        <table style="width:100%; height:100%">
+                                                            <tr>
+                                                                <td style="height:100%">
+                                                                    <div class="text-center">
+                                                                        <i class="fa fa-user fa-5x"></i>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                                        <table style="width:100%">
+
+                                                            <tr>
+                                                                <td><b style="color:#034052">@Model.MyPDR.ReviewerEmailId</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><label class="label @Model.MyPDR.ToCurrentMidYearPDRStatuses().Item2">@Model.MyPDR.ToCurrentMidYearPDRStatuses().Item1</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><label class="label @Model.MyPDR.ToCurrentFullYearPDRStatuses().Item2">@Model.MyPDR.ToCurrentFullYearPDRStatuses().Item1</label></td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <strong> <a href="@Url.Action("ShowPDRDetails", "PDReview", new { revieweeID = @Model.MyPDR.ID, reviewPeriod = @Model.MyPDR.ReviewPeriod.ToString("MM-dd-yyyy") })" style="color:#034052; text-decoration:underline; font-size:12px;"> View details... <i class="fa fa-video-camera fa-fw"></i></a> </strong>
+                                                                </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="2a">
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12">
+                                        <div id="tile148" class="tilePDRStatus">
+                                          
+
+                                            <div class="panel-body1">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                        <div class="progress-bar" data-percent="55" data-duration="1000" data-color="red"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12 col-xs-12 col-md-12">
+
+                    @if (Model.ColleaguesPDR != null)
+                    {
+                        <h3 style="color:white"><strong>Team's PDR status</strong> </h3>
+                        int index = 4;
+
+                        <ul id="dashboardtab" class="nav nav-pills">
+                            <li class="active">
+                                <a href="#1ab" data-toggle="tab">Current PDR status</a>
+                            </li>
+                            <li>
+                                <a href="#2ab" data-toggle="tab">Pie Chart</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1ab">
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12">
+
+                                        @foreach (var colPdr in Model.ColleaguesPDR)
+                        {
+                        var tileClass = string.Format("tile{0}", index);
+                                            
+                                                <div class="col-sm-6 col-xs-6 col-md-6">
+                                                    <div id="tile14" class="tilePDRStatus panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-hand-peace-o" aria-hidden="true"> </i><b> PDR for Year @Model.MyPDR.ReviewPeriod.Year </b>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                                                    <table style="width:100%; height:100%">
+                                                                        <tr>
+                                                                            <td style="height:100%">
+                                                                                <div class="text-center">
+                                                                                    <i class="fa fa-user fa-5x"></i>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+
+                                                                </div>
+                                                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                    <table style="width:100%">
+
+                                                                        <tr>
+                                                                            <td><b style="color:#034052">@colPdr.ReviewerEmailId</b></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><label class="label @colPdr.ToCurrentMidYearPDRStatuses().Item2">@colPdr.ToCurrentMidYearPDRStatuses().Item1</label></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><label class="label @colPdr.ToCurrentFullYearPDRStatuses().Item2">@colPdr.ToCurrentFullYearPDRStatuses().Item1</label></td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong> <a href="@Url.Action("ShowPDRDetails", "PDReview", new { revieweeID = @colPdr.ID, reviewPeriod = @colPdr.ReviewPeriod.ToString("MM-dd-yyyy") })" style="color:#034052; text-decoration:underline; font-size:12px;"> View details... <i class="fa fa-video-camera fa-fw"></i></a> </strong>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                           
+                                            
+
+                        index = index + 1;
+                        }
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="2ab">
+
+
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12">
+
+                                        @foreach (var colPdr in Model.ColleaguesPDR)
+                                        {
+                                            var tileClass = string.Format("tile{0}", index);
+
+                                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                                <div id="tile148" class="tilePDRStatus">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+
+                                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                                <div class="progress-bar" data-percent="55" data-duration="1000" data-color="red"></div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            index = index + 1;
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    }
+                </div>
+
+
+
+            </div>
+
+            <div class="row" style="height:30px;">
+                <div class="col-sm-12 col-xs-12"> </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="col-ld-1 col-md-1 col-sm-1 col-xs-1">
+
+        <div style="padding:10px 10px 10px 20px;" class="dynamicTile">
+
+        </div>
+    </div>
+
+    <div class="col-ld-5 col-md-5 col-sm-5 col-xs-5">
+        <div style="padding:10px 10px 10px 20px;" class="dynamicTile">
+
+            <div class="row">
+                <h3 style="color:white"><strong>Open/Close PDR for current year</strong> </h3>
+                <div class="col-sm-6 col-xs-12">
+                    <div id="tile16" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDR","PDReview")" class="tileClass">
+                                <i class="fa fa-shield fa-flip-vertical fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDR", "PDReview")">Open Mid Year</a></strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div id="tile9" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDR","PDReview")" class="tileClass">
+                                <i class="fa fa-shield fa-rotate-270 fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDR", "PDReview")">Close Mid Year</a></strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div id="tile17" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDR","PDReview")" class="tileClass">
+                                <i class="fa fa-shield fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDR", "PDReview")">Open Full Year</a></strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div id="tile6" class="tile">
+                        <h5 class="tilecaption">
+                            <a href="@Url.Action("ShowAllPDR","PDReview")" class="tileClass">
+                                <i class="fa fa-shield fa-rotate-90 fa-3x"></i>
+                            </a>
+                        </h5>
+                        <p style="color:white;" class="text-center"><strong><a href="@Url.Action("ShowAllPDR", "PDReview")">Close Full Year</a></strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:30px;">
+                <div class="col-sm-12 col-xs-12"> </div>
+            </div>
+
+            @if (Model.AllPDRs.Any())
+            {
+                <div class="row">
+                    <h3 style="color:white"><strong>PDR Status Graph </strong> </h3>
+                    <div class="col-sm-6 col-xs-12">
+                        <div id="tile15" class="tile">
+                            @Html.Partial("_MidPDRStatusPartialPage", Model)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div id="tile8" class="tile">
+                            @Html.Partial("_FullPDRStatusPartialPage", Model)
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <h3 style="color:white"><strong>To do list </strong> </h3>
+                <div class="col-sm-12 col-xs-12">
+                    <div id="tile11" class="tile">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 text-center" style="color:white;">
+                                <strong>To Do List - maximum 5 task can be entered</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 text-center" style="padding-top:10px; border:#696C6F">
+                                <input id="todoinputtasktextbox" style="width:90%; height:45px; background:lightgray; border:#696C6F;" type="text" placeholder="What needs to be done?" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="toDoPartialViewContainer" class="col-lg-12 col-md-12" style="padding-top:10px;">
+                                @Html.Action("ToDoList")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:25px;">
+                <h3 style="color:white"><strong>Activities </strong> </h3>
+                <div class="col-sm-12 col-xs-12">
+                    <div id="tile6" class="tile" style="color:white">
+                        <p style="font-size:18px; padding-left:10px;">Your last five activities.</p>
+                        @Html.Action("LastFiveActivitiesPartialView")
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

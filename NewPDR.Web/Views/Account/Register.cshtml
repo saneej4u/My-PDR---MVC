@@ -1,0 +1,36 @@
+﻿@model NewPDR.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-4">
+                   
+                </div>
+                <div class="col-sm-6">
+                   @Html.Partial("_RegisterPagePartial")
+                </div>
+                <div class="col-sm-2">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

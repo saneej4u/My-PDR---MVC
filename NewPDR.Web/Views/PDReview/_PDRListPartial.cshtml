@@ -1,0 +1,139 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.PDReviewViewModel>
+
+<script type="text/javascript">
+
+    function midYearCompletedSuccess(data, status) {
+        if (status == 'success') {
+            toastr.success('Mid year completed.')
+        }
+    }
+
+    function fullYearCompletedSuccess(data, status) {
+        if (status == 'success') {
+            toastr.success('Full year completed.')
+        }
+    }
+
+</script>
+
+
+<div class="row">
+    <div class="col-md-12" id="pdrListContainer">
+        <div class="row">
+            <div class="col-md-12">
+                <table style="width: 100%" class="table table-hover">
+                    @if (Model.Any())
+                    {
+                    <thead>
+                        <tr>
+                            <th style="font-weight:500"><span class="pull-left">Period</span></th>
+                            <th style="font-weight:500">Mid Year Status</th>
+                            <th style="font-weight:500">Full Year Status</th>
+                            <th style="font-weight:500">User From</th>
+                            <th style="font-weight:500">Is Locked</th>
+                            <th style="font-weight:500"><span class="pull-right">View/Edit</span> </th>
+                            <th style="font-weight:500"> <span class="pull-right">Download</span> </th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:#282D32; font-weight:400;">
+                        @foreach (var reviewee in Model)
+                            {
+                            <tr>
+                                <td><span class="pull-left">@Html.DisplayFor(m => @reviewee.ReviewPeriod.Year)</span></td>
+                                <td>
+                                    @reviewee.MidYearStatus
+                                    @if (@reviewee.MidYearStatus == "Not Started")
+                                        {
+                                        @Html.ActionLink(" Open ", "OpenMidYearPDR", new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod }, new { @class = "btn btn-md btn-primary glyphicon glyphicon-folder-open" })
+                                        }
+                                        else if (@reviewee.MidYearStatus == "In Progress")
+                                        {
+                                        @Ajax.ActionLink(" Close ", "CompleteMidYearPDR", new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod }, new AjaxOptions
+                              {
+                                  HttpMethod = "GET",
+                                  InsertionMode = InsertionMode.Replace,
+                                  UpdateTargetId = "pdrListContainer",
+                                  OnSuccess = "midYearCompletedSuccess"
+                              }, new { @class = "btn btn-md btn-danger glyphicon glyphicon-folder-close" })
+                                        }
+                                </td>
+
+
+
+                                <td>
+                                    @reviewee.FullYearStatus
+                                    @if (@reviewee.MidYearStatus == "Completed")
+                                        {
+                                            if (@reviewee.FullYearStatus == "Not Started")
+                                            {
+                                        @Html.ActionLink(" Open ", "OpenFullYearPDR", new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod }, new { @class = "btn btn-md btn-primary glyphicon glyphicon-folder-open" })
+                                            }
+                                            else if (@reviewee.FullYearStatus == "In Progress")
+                                            {
+                                        @Ajax.ActionLink(" Close ", "CompleteFullYearPDR", new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod }, new AjaxOptions
+                                          {
+                                              HttpMethod = "GET",
+                                              InsertionMode = InsertionMode.Replace,
+                                              UpdateTargetId = "pdrListContainer",
+                                              OnSuccess = "fullYearCompletedSuccess"
+                                          }, new { @class = "btn btn-md btn-danger glyphicon glyphicon-folder-close" })
+                                            }
+                                        }
+
+                                </td>
+                                <td>@reviewee.UserType.Name</td>
+                                <td>
+                                    @if (@reviewee.IsLocked)
+                                        {
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <span title="Locked" class="glyphicon glyphicon-lock"></span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <span title="Locked by : @reviewee.LockedBy" class="glyphicon glyphicon-user"></span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <span title="Locked at: @reviewee.LockedAt" class="glyphicon glyphicon-time"></span>
+                                        </div>
+                                        }
+                                        else
+                                        {
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <span data-toggle="tooltip" data-placement="left" title="Not Locked"><i class="fa fa-unlock fa-lg" aria-hidden="true"> </i></span>
+                                        </div>
+
+                                        }
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ShowPDRDetails", "PDReview", new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod.ToString("MM-dd-yyyy") })">
+                                        <span class="btn btn-md btn-primary glyphicon glyphicon-zoom-in pull-right" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DownloadPDR", "PDReview",new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod })">
+                                        <span title="Click here to download @reviewee.ReviewUserEmail's PDR for year @reviewee.ReviewPeriod.Year" class="btn btn-md btn-primary glyphicon glyphicon-download-alt pull-right" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                    </tbody>
+                    }
+                    else
+                    {
+                    <thead>
+                        <tr>
+                            <th><h4>No PDR Exist, Ask your Line manager to create one for you.</h4></th>
+
+                        </tr>
+                    </thead>
+
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ValidationMessage("PDRListErrors", new { style="padding:10px 40px; " })
+            </div>
+        </div>
+    </div>
+</div>

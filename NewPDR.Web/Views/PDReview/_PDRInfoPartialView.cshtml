@@ -1,0 +1,142 @@
+﻿@model NewPDR.Web.ViewModel.PDReviewViewModel
+
+@Html.HiddenFor(m => Model.ID)
+<div id="objPanel" class="panel-group" style="margin :15px 0 15px 0">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <a data-toggle="collapse" href="#infoCollapsePanelSFIndex"> PDR Info </a>
+            </h2>
+        </div>
+        <div id="infoCollapsePanelSFIndex" data-collapsed-index="infoCollapsePanelSFIndex" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div style="padding:20px; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("PDR Created by", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.ApplicationUser.UserName)
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("Created on", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.DateTimeCreated)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Full Year Status", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.FullYearStatusE)
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("Mid Year Status", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.MidYearStatusE)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Review Period", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.ReviewPeriod)
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("Designation", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.WhoAmI)
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Reviewer email", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.ReviewUserEmail)
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("Line Manager email Id", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.LineMangerEmailId)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Is Line manager signed", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @if (Model.IsManagerSigned)
+                            {
+                                @Html.Label("Yes")
+                            }
+                            else
+                            {
+                                @Html.Label("No")
+                            }
+                           
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("Is Colleague Signed", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                           @if (Model.IsColleagueSigned)
+                           {
+                            @Html.Label("Yes")
+                           }
+                           else
+                           {
+                            @Html.Label("No")
+                           }
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Is Locked", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                           @if (Model.IsLocked)
+                           {
+                           <span>Yes, locked by @Model.LockedBy at @Model.LockedAt.</span>
+                           }
+                           else
+                           {
+                            @Html.Label("No")
+                           }
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.Label("User from", new { style = "font-weight:bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(m => Model.UserType.Name)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

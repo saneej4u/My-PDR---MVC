@@ -1,0 +1,54 @@
+﻿@model NewPDR.Web.ViewModel.DashboardViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Download PDR</title>
+</head>
+<body>
+    <div class="mainMargin"><h2 style="font-size:28px;" class="page-header"> <i class="fa fa-download"></i> Download PDR</h2></div>
+    <div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#downLoadhome"> <i class="fa fa-street-view fa-lg"></i>   My PDR </a></li>
+                                @if (Model.Colleagues.Any())
+                                {
+                                    <li><a data-toggle="tab" href="#downLoadmenu1"> <i class="fa  fa-user-plus fa-lg"></i> My Team's PDR (@Model.Colleagues.Count()) </a></li>
+                                }
+
+                                <li style="display:none"><a data-toggle="tab" href="#menu2"> <i class="fa  fa-users fa-lg"></i> Other PDRs </a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="downLoadhome" class="tab-pane fade in active">
+                                    @Html.Partial("_DownloadPartialPage", Model.PDReviewViewModels)
+
+                                </div>
+
+                                <div id="downLoadmenu1" class="tab-pane fade">
+                                    @Html.Partial("_DownloadTeamsPDRPartialPage", Model.Colleagues)
+                                </div>
+                                <div id="downLoadmenu2" class="tab-pane fade">
+                                    <p>Some content in menu 2.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<NewPDR.Web.ViewModel.ColleaguesViewModel>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12" id="colleaguepdrListContainer">
+        <div class="row">
+            <div class="col-md-12">
+                <table style="width: 100%" class="table table-hover">
+                    @if (Model.Any())
+                    {
+                        <thead>
+                            <tr>
+                                <th style="font-weight:500">NAME</th>
+                                <th style="font-weight:500">EMAIL</th>
+                                <th style="font-weight:500">USER FROM</th>
+                                <th style="font-weight:500; width:250px;">CURRENT PDRs</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color:#282D32; font-weight:400;">
+                            @foreach (var reviewee in Model)
+                            {
+                                <tr>
+                                    <td>@string.Format("{0} {1}", reviewee.FirstName, reviewee.Surname)</td>
+                                    <td><a href="@Url.Action("ProfileDetails", "Profile", new { emailId = @reviewee.ColleagueUser.UserName})" style="color:#00BCF2; text-decoration:underline">@reviewee.ColleagueUser.UserName</a>  </td>
+                                    <td>@reviewee.UserFrom</td>
+                                    <td>
+                                        @foreach (var rp in @reviewee.PDReviews)
+                                        {
+
+                                            <a href="@Url.Action("DownloadPDR", "PDReview", new { revieweeID = @rp.ID, reviewPeriod = @rp.ReviewPeriod })">
+                                                <span title="Click here to download @rp.ReviewerEmailId's PDR for year @rp.ReviewPeriod.Year." class="btn btn-sm btn-primary glyphicon glyphicon-download-alt" aria-hidden="true"> @rp.ReviewPeriod.Year.ToString() </span>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    }
+                    else
+                    {
+                        <thead>
+                            <tr>
+                                <th><h4>No PDR Exist, Ask your team members to sign up/register for PDR.</h4></th>
+                            </tr>
+                        </thead>
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

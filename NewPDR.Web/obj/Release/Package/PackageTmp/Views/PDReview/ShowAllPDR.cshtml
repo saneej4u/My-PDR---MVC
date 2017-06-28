@@ -1,0 +1,89 @@
+﻿@model NewPDR.Web.ViewModel.DashboardViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All PDR's </title>
+
+
+    <script type="text/javascript">
+
+        function pdrCreatedSuccess(data, status) {
+            var $response = $(data);
+            if (status == 'success') {
+                toastr.success('PDR Created successfully.')
+            }
+        }
+
+        function colleaguePDRCreatedSuccess(data, status) {
+            if (status == 'success') {
+                if ($(data).find('.input-validation-error').length > 0) {
+                    toastr.error('Failed to create PDR.')
+                }
+                else {
+                    toastr.success('PDR created successfully.')
+                }
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div class="mainMargin"><h2 style="font-size:28px;" class="page-header"> <i class="fa fa-users"></i> All PDR's </h2></div>
+
+    <div class="">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+
+                            @if (Model != null)
+                            {
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-street-view fa-lg"></i>   My PDR </a></li>
+                                    @if (Model.Colleagues != null && Model.Colleagues.Count() > 0)
+                                    {
+                                        <li><a data-toggle="tab" href="#menu1"> <i class="fa  fa-user-plus fa-lg"></i> My Team's PDR (@Model.Colleagues.Count()) </a></li>
+                                    }
+
+                                    <li style="display:none"><a data-toggle="tab" href="#menu2"> <i class="fa  fa-users fa-lg"></i> Other PDRs </a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane fade in active">
+                                        @Html.Partial("_PDRListPartial", Model.PDReviewViewModels)
+
+                                    </div>
+
+                                    @if (Model.Colleagues != null && Model.Colleagues.Count() > 0)
+                                    {
+                                        <div id="menu1" class="tab-pane fade">
+                                            @Html.Partial("_ColleaugePDRListPartial", Model.Colleagues)
+                                        </div>
+                                    }
+
+                                    <div id="menu2" class="tab-pane fade">
+                                        <p>Some content in menu 2.</p>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+</html>

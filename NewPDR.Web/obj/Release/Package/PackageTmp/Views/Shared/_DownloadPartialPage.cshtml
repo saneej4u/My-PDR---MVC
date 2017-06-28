@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<NewPDR.Web.ViewModel.PDReviewViewModel>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <table style="width: 100%" class="table table-hover">
+                    @if (Model.Any())
+                    {
+                        <thead>
+                            <tr>
+                                <th style="font-weight:500"><span class="pull-left">Period</span></th>
+                                <th style="font-weight:500">Mid Year Status</th>
+                                <th style="font-weight:500">Full Year Status</th>
+                                <th style="font-weight:500">User From</th>
+                                <th style="font-weight:500"> <span class="pull-right">Download</span> </th>
+                            </tr>
+                        </thead>
+                        <tbody style="color:#282D32; font-weight:400;">
+                            @foreach (var reviewee in Model)
+                            {
+                                <tr>
+                                    <td><span class="pull-left">@Html.DisplayFor(m => @reviewee.ReviewPeriod.Year)</span></td>
+                                    <td> @reviewee.MidYearStatus </td>
+                                    <td> @reviewee.FullYearStatus </td>
+                                    <td>@reviewee.UserType.Name</td>
+                                    <td>
+                                        <a href="@Url.Action("DownloadPDR", "PDReview",new { revieweeID = @reviewee.ID, reviewPeriod = @reviewee.ReviewPeriod })">
+                                            <span title="Click here to download @reviewee.ReviewUserEmail's PDR for year @reviewee.ReviewPeriod.Year" class="btn btn-md btn-primary glyphicon glyphicon-download-alt pull-right" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <thead>
+                            <tr>
+                                <th><h4>No PDR Exist, Ask your Line manager to create one for you.</h4></th>
+
+                            </tr>
+                        </thead>
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\NewPDR.Model.dll.config
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\NewPDR.Model.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\NewPDR.Model.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\EntityFramework.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\EntityFramework.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.dll
+C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.Model\obj\Debug\NewPDR.Model.csprojResolveAssemblyReference.cache

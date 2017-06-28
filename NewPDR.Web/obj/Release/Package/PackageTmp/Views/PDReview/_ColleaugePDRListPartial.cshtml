@@ -1,0 +1,84 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.ColleaguesViewModel>
+
+<script>
+    function colleaguePDRCreatedSuccess(data, status) {
+        var IsCreated = '@ViewBag.IsCreated';
+
+        if (status == 'success') {
+            if (IsCreated == 'True') {
+                toastr.success('PDR created successfully.')
+            }
+            else {
+                toastr.error(IsCreated)
+            }
+        }
+    }
+
+</script>
+<div class="row">
+    <div class="col-md-12 col-sm-12" id="colleaguepdrListContainer">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <table style="width: 100%" class="table table-hover">
+                    @if (Model.Any())
+                    {
+                        <thead>
+                            <tr>
+                                <th style="font-weight:500">NAME</th>
+                                <th style="font-weight:500">EMAIL</th>
+                                <th style="font-weight:500">USER FROM</th>
+                                <th style="font-weight:500; width:250px;">CURRENT PDRs</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="color:#282D32; font-weight:400;">
+                            @foreach (var reviewee in Model)
+                            {
+                                <tr>
+                                    <td>@string.Format("{0} {1}", reviewee.FirstName, reviewee.Surname)</td>
+                                    <td><a href="@Url.Action("ProfileDetails", "Profile", new { emailId = @reviewee.ColleagueUser.UserName})" style="color:#00BCF2; text-decoration:underline" >@reviewee.ColleagueUser.UserName</a> </td>
+                                    <td>@reviewee.UserFrom</td>
+                                    <td>
+                                        @foreach (var rp in @reviewee.PDReviews)
+                                        {
+                                            @Html.ActionLink(@rp.ReviewPeriod.Year.ToString(), "ShowPDRDetails", new { revieweeID = @rp.ID, reviewPeriod = @rp.ReviewPeriod.ToString("MM-dd-yyyy") }, new { style = "color:black;", @class = "btn btn-link" })
+                                            <a href="@Url.Action("DownloadPDR", "PDReview", new { revieweeID = @rp.ID, reviewPeriod = @rp.ReviewPeriod })">
+                                                <span title="Click here to download @rp.ReviewerEmailId's PDR for year @rp.ReviewPeriod.Year." class="btn btn-sm btn-primary glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        @Ajax.ActionLink(" Create PDR ", "CreateReviewerPDR", new { reviewerUserId = @reviewee.ColleagueUser.Id }, new AjaxOptions
+                              {
+                                  HttpMethod = "GET",
+                                  InsertionMode = InsertionMode.Replace,
+                                  UpdateTargetId = "colleaguepdrListContainer",
+                                  OnSuccess = "colleaguePDRCreatedSuccess"
+                              }, new { @class = "btn btn-md btn-primary glyphicon glyphicon-plus" })
+                                </tr>
+                            }
+
+                        </tbody>
+                    }
+                    else
+                    {
+                        <thead>
+                            <tr>
+                                <th><h4>No PDR Exist, Ask your team members to sign up/register for PDR.</h4></th>
+                            </tr>
+                        </thead>
+
+                    }
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ValidationMessage("PDRColleagueListErrors", new { style = "padding:10px 40px; " })
+                <input type="hidden" id="IsCreatedHF" value="1" />
+            </div>
+        </div>
+    </div>
+</div>

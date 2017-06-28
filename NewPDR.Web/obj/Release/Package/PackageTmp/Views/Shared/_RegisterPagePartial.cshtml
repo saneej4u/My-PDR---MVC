@@ -1,0 +1,110 @@
+﻿@model NewPDR.Web.Models.RegisterViewModel
+
+
+@if (Model.IsHRProUserExist && (!Model.IsPDRUserExist))
+{
+    <div class="form-box">
+        <div class="form-top">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+
+                    <i class="fa fa-user fa-5x"></i>
+                </div>
+                <div class="col-md-9 col-sm-9">
+                    <h2>@Html.DisplayFor(m => m.FullName, new { @class = "form-first-name form-control" })</h2>
+                    <h5>@Html.DisplayFor(m => m.Email, new { placeholder = "Email address...", @class = "form-first-name form-control" })</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+
+
+<div class="form-box">
+    @if (Model.IsHRProUserExist && (!Model.IsPDRUserExist))
+    {
+        <div class="form-top">
+            <div class="form-top-left">
+                <h3>Sign up now</h3>
+                <p>Fill in the form below to get instant access:</p>
+            </div>
+            <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+            </div>
+        </div>
+    }
+
+    <div class="form-bottom">
+
+
+        @if (Model.IsHRProUserExist && (!Model.IsPDRUserExist))
+        {
+            using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "registration-form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(m => m.Email)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserType, new { @class = "sr-only" })
+                    @Html.DropDownListFor(m => m.SelectedUserType, Model.UserType, "----- Please select -----", new { @class = "form-control controls" })
+                    @Html.ValidationMessageFor(m => m.SelectedUserType)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Enter password...", @class = "form-last-name form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "sr-only" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password...", @class = "form-last-name form-control" })
+                </div>
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign me up!</button>
+            }
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(Model.Email))
+            {
+                if (!Model.IsHRProUserExist)
+                {
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>@Model.Email is not exist in HR Pro Database.</h3>
+                            <p><a href="~/Home/">Click here to Register</a></p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-database"></i>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>@Model.Email is already exist, Please sign in.</h3>
+                            <p><a href="~/Home/">Click here to Register</a></p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-hand-o-left"></i>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="form-top">
+                    <div class="form-top-left">
+                        <h3>Please enter email.</h3>
+                        <p><a href="~/Home/">Click here to Register</a></p>
+                    </div>
+                    <div class="form-top-right">
+                        <i class="fa fa-times-circle-o"></i>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

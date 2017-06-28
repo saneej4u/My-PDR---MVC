@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NewPDR.Web.ViewModel.ActivityViewModel>
+
+<div class="row">
+    <div style="font-size:12px;" class="col-lg-12 col-md-12 col-sm-12">
+        <ul style="list-style-type:none;">
+            @foreach (var data in Model)
+            {
+                <li>
+                    @data.Name
+                    <p>
+
+                        @{
+
+                TimeSpan span = data.DateTimeCreated.Subtract(DateTime.Today);
+                var days = span.TotalDays;
+                var hours = DateTime.Now.Subtract(data.DateTimeCreated).Hours;
+                var minutes = DateTime.Now.Subtract(data.DateTimeCreated).Minutes;
+
+                if (days > 0)
+                {
+                    <span class="glyphicon glyphicon-time"></span><span> @string.Format(" {0} days ago.", days) </span>
+                }
+                else
+                {
+                    if (hours > 0)
+                    {
+                        <span class="glyphicon glyphicon-time"></span><span> @string.Format(" {0} hours ago.", hours) </span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-time"></span><span> @string.Format(" {0} minutes ago.", minutes) </span>
+                    }
+                }
+
+
+                        }
+
+
+                    </p>
+                    <hr style="background:white;" />
+                </li>
+            }
+        </ul>
+
+
+
+
+
+
+
+    </div>
+
+
+
+</div>
+

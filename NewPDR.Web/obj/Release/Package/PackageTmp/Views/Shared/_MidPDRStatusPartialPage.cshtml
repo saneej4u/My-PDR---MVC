@@ -1,0 +1,47 @@
+﻿@model  NewPDR.Web.ViewModel.TitleViewModel
+
+@if (Model != null)
+{
+    <div style="width:100%; height:100%; background:inherit;">
+
+        @{
+
+    string myTheme =
+                    @"<Chart BackColor=""#F0A30A"" >
+                        <ChartAreas>
+                            <ChartArea Name=""Default"" BackColor=""#F0A30A""></ChartArea>
+                        </ChartAreas>
+                    </Chart>";
+    var myChart = new Chart(width: 450, height: 180, theme: myTheme)
+      .AddTitle("Mid Year Colleagues PDR Status")
+      .AddSeries(
+      name: "MidStatus",
+      chartType: "SplineArea",
+      xValue: Model.AllPDRs.Select(z => z.ReviewerEmailId).ToList(),
+      yValues: Model.AllPDRs.Select(z => z.MidYearStatus).ToList());
+
+    var base64 = Convert.ToBase64String(myChart.GetBytes());
+    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+        }
+
+        <img style="background:inherit" src="@imgSrc" />
+
+    </div>
+}
+else
+{
+    <div style="width:350px; height:180px; background:inherit;">
+        <h3 class="tilecaption">
+            <a href="#" class="btn btn-md btn-block" style="color:white; font-size:22px;">
+                <i class="fa fa-area-chart fa-3x"></i><strong> No Graph yet</strong>
+            </a>
+        </h3>
+    </div>
+}
+
+
+
+
+
+

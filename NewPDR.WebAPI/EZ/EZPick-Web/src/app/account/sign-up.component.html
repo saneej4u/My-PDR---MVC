@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="row centered-form">
+		<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title1">Please sign up for EZ Pick <small>It's free!</small></h4>
+				</div>
+				<div class="panel-body">
+					<form role="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmitClicked(registerForm.value)">
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<md-input placeholder="Enter first name" formControlName="firstName" style="width: 100%"></md-input>
+									<small [hidden]="registerForm.controls.firstName.valid || registerForm.controls.firstName.pristine">
+										This field is required.
+									</small>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<md-input placeholder="Enter last name" formControlName="lastName" style="width: 100%"></md-input>
+									<small [hidden]="registerForm.controls.lastName.valid || registerForm.controls.lastName.pristine">
+										This field is required.
+									</small>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<md-input type="email" placeholder="Enter email address" formControlName="email" style="width: 100%"></md-input>
+							<small [hidden]="registerForm.controls.email.valid || registerForm.controls.email.pristine">
+										This field is required.
+							</small>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<md-input type="password" placeholder="Enter password" formControlName="password" style="width: 100%"></md-input>
+									<small [hidden]="registerForm.controls.password.valid || registerForm.controls.password.pristine">
+										This field is required.
+									</small>
+
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<md-input type="password" placeholder="Confirm Password" formControlName="confirmPassword" style="width: 100%"></md-input>
+									<small [hidden]="registerForm.controls.confirmPassword.valid || registerForm.controls.confirmPassword.pristine">
+										This field is required.
+									</small>
+
+								</div>
+							</div>
+						</div>
+
+						<button [disabled]="!registerForm.valid" type="submit" class="btn btn-lg btn-primary btn-block"> Sign Up </button>
+
+					</form>
+
+					<div *ngIf="errors">
+						<p> <span class="label label-danger">{{errors}}</span> </p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

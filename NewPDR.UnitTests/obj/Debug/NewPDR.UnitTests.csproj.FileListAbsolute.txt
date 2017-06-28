@@ -1,0 +1,5 @@
+C:\PDR\New PDR\NewPDR\NewPDR.UnitTests\bin\Debug\NewPDR.UnitTests.dll
+C:\PDR\New PDR\NewPDR\NewPDR.UnitTests\bin\Debug\NewPDR.UnitTests.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.UnitTests\obj\Debug\NewPDR.UnitTests.dll
+C:\PDR\New PDR\NewPDR\NewPDR.UnitTests\obj\Debug\NewPDR.UnitTests.pdb
+C:\PDR\New PDR\NewPDR\NewPDR.UnitTests\obj\Debug\NewPDR.UnitTests.csprojResolveAssemblyReference.cache

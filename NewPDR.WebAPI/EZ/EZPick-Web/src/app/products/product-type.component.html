@@ -1,0 +1,8 @@
+
+
+<md-card *ngIf="productType" (click)="productTypeClicked(productType)" style="color:#536468;width:250px;font-size: 18px important;cursor: pointer; cursor: hand;">
+  <img md-card-image [alt]="productType.name" src="app/products/images/producttypes/{{productType.imageUrl}}">
+  <md-card-title style="font-size: 16px !important;">{{productType.name}}</md-card-title>
+</md-card>
+
+

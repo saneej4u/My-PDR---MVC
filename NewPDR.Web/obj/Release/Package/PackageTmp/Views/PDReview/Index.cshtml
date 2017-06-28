@@ -1,0 +1,60 @@
+﻿@model NewPDR.Web.ViewModel.DashboardViewModel
+
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function pdrCreatedSuccess(data, status) {
+        var $response = $(data);
+        if (status == 'success') {
+            toastr.success('PDR Created successfully.')
+        }
+    }
+
+    function colleaguePDRCreatedSuccess(data, status) {
+        if (status == 'success') {
+            if ($(data).find('.input-validation-error').length > 0) {
+                toastr.error('Failed to create PDR.')
+            }
+            else {
+                toastr.success('PDR created successfully.')
+            }
+        }
+    }
+
+    function deleteTaskSuccess(data, status) {
+        if (status == 'success') {
+            toastr.success('Task deleted successfully.')
+        }
+    }
+
+
+</script>
+
+<div id="dashboardContainer">
+    @if (ViewBag.IsManagerView)
+    {
+        <div class="mainMargin" style="margin-top:75px;padding-bottom: 20px;"><h1 style="font-family:sans-serif" class=""><strong>Dashboard</strong> </h1></div>
+        @Html.Action("ShowTitle")
+    }
+    else
+    {
+
+        Response.Redirect("~/PDR/All", false);
+        
+    }
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

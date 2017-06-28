@@ -1,0 +1,18 @@
+namespace NewPDR.Data.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class linemangerId : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.PDReviews", "LineManagerEmailId", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.PDReviews", "LineManagerEmailId");
+        }
+    }
+}

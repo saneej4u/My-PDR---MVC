@@ -1,0 +1,240 @@
+<div class="container">
+
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="review-pay" type="button" class="btn btn-default btn-circle">
+                    <span> <i class="fa fa-truck" aria-hidden="true"></i></span>
+                </a>
+                <p>Shipping</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#" type="button" class="btn btn-primary btn-circle" id="ProfileSetup-step-2" disabled="disabled">
+                    <span><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                </a>
+                <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#Security-Setup-step" type="button" class="btn btn-default btn-success-2 btn-circle" disabled="disabled" id="Security-Setup-step-3">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+                <p>Confirmation</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding:30px;">
+        <div class="col-sm-12 col-md-12 text-center">
+            <h2> <b>Review, Pay and Place an order</b> </h2>
+            <p class="lead">
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+            </p>
+        </div>
+    </div>
+
+    <div *ngIf="selectedDelivery" class="row" style="margin-top:30px;">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <b>DELIVERY ADDRESS</b> </div>
+                <div class="panel-body">
+                    <p>
+                        Your order will be delivered to
+                        <b style="text-decoration:underline;">
+                                    {{selectedDelivery?.addressLine1}}, 
+                                    {{selectedDelivery?.addressLine2}},
+                                    {{selectedDelivery?.street}}, 
+                                    {{selectedDelivery?.postCode}}, 
+                                    {{selectedDelivery?.country}}
+                                    </b> in 3 -5 working days.
+                    </p>
+                    <p><button class="btn" (click)="changeDel()">Click here if you want to change delivery address</button>                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ <form role="form" [formGroup]="invoiceAddressForm" novalidate (ngSubmit)="onSubmitAddInvoice(invoiceAddressForm.value)">
+
+    <div class="row" style="margin-top:30px;">
+
+        <div class="col-xs-12 col-md-4">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        ORDER
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-left"> <span><b>PRODUCT</b></span></th>
+                                <th class="text-left"> <span><b>ITEM</b></span></th>
+                                <th class="text-right"> <span><b>SUBTOTAL</b></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let items of addedItems">
+                                <td style="width:65px; height:65px">
+                                    <div class="thumbnail">
+                                        <img style="width:60px; height:60px" src="app/products/images/{{items?.imageUrl}}">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>{{items?.quantity}} X {{items?.name}}</h5>
+                                    <h5> <b>{{items?.price | currency : 'GBP' : true}}</b> </h5>
+                                </td>
+
+                                <td class="text-right">
+                                    <h4>{{items?.price * items?.quantity | currency : 'GBP' : true}}</h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        INVOICE ADDRESS
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                        <div class="form-group">
+                            <label>Address Line 1</label>
+                            <input #addNewLink class="form-control" formControlName="addressLine1" placeholder="Enter Your Address Line 1">
+                            <small [hidden]="invoiceAddressForm.controls.addressLine1.valid || invoiceAddressForm.controls.addressLine1.pristine">
+						This field is required.
+					</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Address Line 2</label>
+                            <input class="form-control" formControlName="addressLine2" placeholder="Enter Your Address Line 2">
+                            <small [hidden]="invoiceAddressForm.controls.addressLine2.valid || invoiceAddressForm.controls.addressLine2.pristine">
+						This field is required.
+					</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input class="form-control" formControlName="street" placeholder="Enter Your Street">
+                            <small [hidden]="invoiceAddressForm.controls.street.valid || invoiceAddressForm.controls.street.pristine">
+						This field is required.
+					</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label> Post Code</label>
+                                    <input class="form-control" formControlName="postcode" placeholder="Post code">
+                                    <small [hidden]="invoiceAddressForm.controls.postcode.valid || invoiceAddressForm.controls.postcode.pristine">
+                                This field is required.
+                            </small>
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <input class="form-control" formControlName="country" placeholder="Enter your Country">
+                                    <small [hidden]="invoiceAddressForm.controls.country.valid || invoiceAddressForm.controls.country.pristine">
+                                This field is required.
+                            </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="errors">
+                            <p> <span class="label label-danger">{{errors}}</span> </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        SUMMARY
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    SUMMARY
+                </div>
+
+
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Payment Details
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <div>
+                        <div class="form-group">
+                            <label for="cardNumber">
+                            CARD NUMBER</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number" required autofocus />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="expityMonth">
+                                    EXPIRY DATE</label>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                    </div>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <label for="cvCode">
+                                    CV CODE</label>
+                                    <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                </li>
+            </ul>
+            <br/>
+            <button class="btn btn-success btn-lg btn-block" role="button">Pay & Place an Order</button>
+        </div>
+    </div>
+
+ </form>
+
+</div>

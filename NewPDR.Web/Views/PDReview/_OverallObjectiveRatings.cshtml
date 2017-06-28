@@ -1,0 +1,33 @@
+﻿@model NewPDR.Web.ViewModel.PDRDetailsViewModel
+
+
+@using (Ajax.BeginForm("SaveOverallObjectiveDDL", "PDReview", null, new AjaxOptions { UpdateTargetId = "objoverallContainer", OnSuccess = "objoverallSuccess", HttpMethod = "GET" }, new { id = "objDDLForm" }))
+{
+    <div id="objoverallContainer" class="panel-group" style="margin :15px 0 15px 0">
+        @Html.HiddenFor(m => m.PDRId)
+        <div class="panel panel-default">
+            <div id="objoverratings" data-collapsed-index="objoverratings" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div style="padding:20px; border:1px #e8e8e8 solid; background-color:#ebebed; box-shadow: 0 -1px 20px -4px rgba(0,0,0,.75) ; color:#282D32; font-weight:400 !important;">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                @Html.LabelFor(m => Model.SelectedObjectiveOverallRatingId)
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <h4><mark> <b> @Html.DisplayFor(m => Model.SelectedObjectiveOverallRatingId, new { @class = "form-control controls", id = "overallObjectiveRatingDDL", style = "font-size:16px;" })</b> </mark></h4>
+                                 @Html.ValidationMessage("SelectedObjectiveOverallRatingId")
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <strong><label style="font-size:14px;" class="label label-danger fa fa-info-circle">  Closing Mid/Full year will calculate Overall objective rating automatically.</label></strong>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
